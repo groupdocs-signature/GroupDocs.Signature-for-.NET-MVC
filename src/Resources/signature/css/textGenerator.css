@@ -1,0 +1,231 @@
+#gd-text-container {
+    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    background-color: #ffffff;
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+#gd-text-container input {
+    border: 1px solid #dcdcdc;
+    padding: 5px;
+    color: #9c9c9c;
+    margin-bottom: 10px;
+	margin-right: 10px;
+}
+
+#gd-text-container input:focus, button:focus {
+    outline: none;
+}
+
+#gd-text-params-header {
+    text-align: center;
+}
+
+#gd-text-params-container {
+    background-color: #e2e2e2;
+    width: 92%;
+    height: 44%;
+    padding: 10px;
+    position: fixed;  
+}
+
+.gd-text-params {   
+    padding: 15px 20px;
+    margin-bottom: 10px;
+    position: relative;
+    border: 1px solid #ddd;
+	height: 100%;
+}
+
+.gd-text-params h3 {
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 300;
+    font-size: 12px;
+    margin: 0;   
+}
+
+.gd-text-params > div {
+    display: block;
+}
+
+.gd-text-params input[type="number"] {
+    width: 60px;
+}
+
+.gd-text-params input[type="text"] {
+    width: 218px;
+}
+
+.gd-text-params #gd-text-text-font {
+    width: 120px;
+}
+
+.gd-text-params .gd-text-color-picker {
+    width: 86px;
+    height: 27px;
+    border: 1px solid #dcdcdc;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+.gd-text-params table {
+    margin-bottom: 13px;
+    margin-left: -13px;
+}
+
+.gd-text-checkboxes {
+	width: 244px;
+    margin-top: -25px;
+}
+
+.gd-text-label {
+    font-size: 13px;
+}
+
+.gd-text-checkbox {
+	display: inline-grid;
+}
+
+.gd-text-italic {
+	margin-left: 20px;
+}
+
+.gd-text-underline {
+	margin-left: 10px;
+}
+
+.gd-text-checkbox input {
+	margin: 50px auto;
+    position: relative;
+    display: block;
+    width: 100px;
+}
+
+input[type="checkbox"] {
+    width: auto;
+    opacity: 0.00000001;
+    position: absolute;    
+    margin-left: -20px;
+}
+
+.gd-text-helper {
+    position: absolute;
+    top: 14px;
+    left: -6px;
+    cursor: pointer;
+    display: block;
+    font-size: 16px;
+    user-select: none;
+    color: #e7e7e7;
+}
+.gd-text-helper:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    margin: 4px;
+    width: 22px;
+    height: 22px;
+    transition: transform 0.28s ease;
+    border-radius: 0px;
+    border: 2px solid #959da5;
+}
+.gd-text-helper:after {   
+    content: '';
+    display: block;
+    width: 10px;
+    height: 5px;
+    border-bottom: 2px solid #666;
+    border-left: 2px solid #666;
+    -webkit-transform: rotate(-45deg) scale(0);
+    -moz-transform: rotate(-45deg) scale(0);
+    -ms-transform: rotate(-45deg) scale(0);
+    transform: rotate(-45deg) scale(0);
+    position: absolute;
+    top: 12px;
+    left: 10px;
+}
+
+.gd-text-checkbox label {
+    min-height: 24px;      
+    margin-bottom: 0;
+    font-weight: normal;
+    cursor: pointer;
+    vertical-align: sub;
+    position: relative;
+}
+
+input[type="checkbox"]:checked ~ .gd-text-helper::after {
+    -webkit-transform: rotate(-45deg) scale(1);
+    -moz-transform: rotate(-45deg) scale(1);
+    -ms-transform: rotate(-45deg) scale(1);
+    transform: rotate(-45deg) scale(1);
+}
+
+#gd-text-border-width-label{
+    width: 67px !important;
+}
+
+#gd-text-border-table td, #gd-text-table td {
+    text-align: left;
+}
+
+.gd-text-color {
+    margin-right: 11px;
+	width: 88px;
+}
+
+.gd-text-background-color {
+	width: 107px;
+}
+
+#gd-text-underline {
+    margin-left: 19px;
+}
+
+#gd-text-border-width-div {
+    width: 94px;
+}
+
+#gd-text-border-style-line div {
+	margin-bottom: 12px;
+}
+
+.gd-border-style-wrapper {
+    border: 1px solid #ccc;
+    width: 85px;
+    border-radius: 3px;
+    overflow: hidden;
+    background: #fafafa;
+}
+
+.gd-border-style-select {
+    padding: 5px 8px;
+    border: none;
+    box-shadow: none;
+    background: transparent;
+    background-image: none;
+    -webkit-appearance: none;
+	width: 100%;
+}
+
+#gd-text-font {
+    width: 120px;
+}
+
+#gd-text-preview-container {
+    position: absolute;
+    left: calc(100% - 446px);
+    top: calc(100% - 56px);
+}
+
+.gd-text-preview {
+    position: absolute;
+    top: 50px;
+}
+
+.bcPicker-palette {
+    top: 25px;
+}

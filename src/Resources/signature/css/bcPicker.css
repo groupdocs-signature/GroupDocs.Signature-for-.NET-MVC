@@ -1,0 +1,26 @@
+.bcPicker-picker{
+  width: 100%;
+  height: 100%;
+  position:  relative;
+  cursor: pointer;
+}
+
+.bcPicker-palette{
+  width: 120px;
+  position: absolute;
+  top: 16px;
+  padding: 5px;
+  border: 1px solid #efefef;
+  background-color: #fdfdfd;
+  z-index: 10;
+  display: none;
+}
+
+.bcPicker-palette > .bcPicker-color{
+  width: 14px;
+  height: 14px;
+  margin: 2px;
+  display: inline-block;
+  border: 1px solid #efefef;
+  background-color: #9da97b;
+}

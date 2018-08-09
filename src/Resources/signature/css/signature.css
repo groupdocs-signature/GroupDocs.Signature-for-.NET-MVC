@@ -1,0 +1,487 @@
+/*
+******************************************
+FIX DOCUMENT PAGE POSITION FOR IMAGE SIGNATURE
+******************************************
+*/
+.gd-page {
+    position: relative !important;
+}
+.gd-save-disabled {
+    cursor: not-allowed !important;
+}
+#gd-header-logo {
+    background-image: url('../images/logo.png') !important;
+}
+/*
+******************************************
+MODAL
+******************************************
+*/
+.gd-signature-modal-dialog {   
+    width: 700px !important;
+    height: 500px !important;
+}
+#gd-open-signature {
+    right: -15px;
+    background-color: #25c2d4;
+}
+#gd-sign-section {
+    width: 100%;
+    height: 100%;
+}
+.gd-upload-signatures {
+    margin-left: 29%;
+}
+.gd-modal-buttons {
+	position: initial;
+    display: inline-grid;
+    font-size: 14px;
+    width: 146px;
+	cursor: pointer;
+	margin-top: 208px;
+    text-align: center;
+}
+.gd-draw-signatures i, .gd-upload-signatures i, .gd-browse-signatures i {   
+    font-size: 72px;
+    color: #808080;
+    position: inherit;
+}
+.gd-browse-signatures{
+    margin-left: 14px;
+}
+.gd-signing-label {
+    position: absolute;
+    top: 36px;
+    left: 27px;
+}
+.gd-signing-label div {
+    font-size: 20px !important;
+	display: inline-grid;
+}
+.gd-signing-label div i {
+    font-size: 14px !important;
+    color: #959da5;
+    left: 20px;
+    width: max-content;
+
+}
+#gd-signature-upload-input{
+	opacity: 0;
+	position: absolute;
+	cursor: pointer;
+    width: inherit;
+}
+#gd-signature-upload-input::-webkit-file-upload-button{
+	height: 88px;
+    cursor: pointer;	
+}
+/*
+******************************************
+SIGNING MODAL FOOTER
+******************************************
+*/
+#gd-signing-footer{
+    position: absolute;
+    bottom: -52px;
+    left: 0px;
+    background-color: #e5e5e5;
+    width: 100%;
+    height: 50px;
+    display: none;
+}
+#gd-signing-footer div{
+    font-size: 19px;
+    top: 14px !important;
+    left: 37px;
+    position: absolute;
+    cursor: pointer;
+}
+#gd-signing-footer div:last-child{
+    left: calc(100% - 90px);
+}
+.gd-signing-disabled {
+    cursor: not-allowed !important;
+    color: #cacaca !important;
+}
+.gd-modal-pagination{
+    position: absolute;
+    top: 21px;
+    left: 42%;
+    text-align: center;
+}
+.gd-modal-pagination li {
+    margin: 0 6px;
+    display: inline-block;
+}
+.gd-pagination {
+    width: 29px;
+    height: 8px;
+    display: block;
+    background: #cacaca;
+    text-indent: -9999px;
+    border-radius: 0px;
+}
+.gd-pagination-active {
+    background: #666;
+}
+/*
+******************************************
+SIGNING MODAL SLIDES
+******************************************
+*/
+.gd-slider-caption {
+    width: 96%;
+    padding: 2%;
+    left: 0;
+    bottom: 0;
+    background: rgba(0,0,0,.5);
+    color: #fff;
+    text-shadow: 0 -1px 0 rgba(0,0,0,.3);
+    font-size: 14px;
+    line-height: 18px;
+}
+.gd-slide {
+    display: none;
+    width: inherit;
+    height: inherit;
+    position: inherit;
+    position: absolute;
+    left: 0px;
+    top: 52px;
+}
+/*
+******************************************
+BROWSE SIGNATURES SLIDE
+******************************************
+*/
+#gd-signatures{
+    position: absolute;
+    top: 90px;
+    left: 28px;
+    width: 93%;
+    height: 365px;
+    overflow-y: auto;
+}
+.gd-digital-signature {
+	border-style: solid;
+    border-width: 1px;
+    border-color: #cccccc;
+    background-color: #e5e5e5;  
+}
+.gd-signature i {
+    margin-left: 17px;
+    cursor: pointer;
+}
+.gd-signature .fa-folder {
+    margin-left: 17px;
+}
+.gd-signature .gd-signature-name {
+    margin-left: 14px;
+}
+.gd-signature .fa-level-up {
+    margin-left: 23px;
+}
+.gd-signature-thumbnail {
+    background-color: #ffffff;
+    width: 152px;
+    height: 152px;
+    display: inline-block;   
+    cursor: pointer;
+    padding-top: 2px;
+	margin-right: 6px;	
+	border-style: solid;
+    border-width: 1px;
+}
+.gd-signature-thumbnail label {
+    margin-left: 5px !important;
+    top: 0px !important;
+}
+.gd-signature-thumbnail > input {
+    width: 150px;
+    height: 150px;
+}
+.gd-signature-thumbnail-image {
+    width: 150px;
+    height: 150px;
+    margin-top: -35px;
+}
+.gd-signature-radio {
+    opacity: 0;
+    position: absolute;
+}
+.gd-signature-radio, .gd-signature-name, .gd-all-pages-label {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 5px;
+    cursor: pointer;
+}
+.gd-signature-name, .gd-all-pages-label{
+    position: relative;
+    color: #0c0b0b !important;
+    font-size: 16px !important;
+}
+
+.gd-signature-radio + .gd-signature-name:before, .gd-signature-radio + .gd-all-pages-label:before {
+    content: '';
+    background: #fff;
+    border: 2px solid #ddd;
+    display: inline-block;
+    vertical-align: middle;
+    width: 15px;
+    height: 15px;
+    padding: 2px;
+    margin-right: 10px;
+    text-align: center;
+    border-radius: 50%;
+}
+.gd-signature-radio:checked + .gd-signature-name:before, .gd-signature-radio:checked + .gd-all-pages-label:before {
+    content: "\f00c";
+    font-family: 'FontAwesome';
+    color: #3e4e5a;
+}
+
+/*
+******************************************
+DRAW IMAGE SLIDE
+******************************************
+*/
+#gd-draw-image, #gd-draw-stamp, #gd-draw-optical, #gd-draw-text {
+    margin: 0 !important;
+    background-color: #ffffff;
+    position: absolute;
+    top: calc(100% - 81%);
+	left: 16px;
+    width: 95%;
+    height: 324px;
+}
+.csg-preview{
+    top: -8px !important;
+    left: 38px;
+}
+/*
+******************************************
+ADDITIONAL SIGNATURE INFORMATION SLIDE
+******************************************
+*/
+.gd-signature-information {
+    position: absolute;
+	top: calc(100% - 376px);
+    left: 23px;
+    width: 88%;
+}
+.gd-signature-information input {
+    margin-bottom: 17px;
+    width: 100%;
+    height: 35px;
+    border-color: #e5e5e5;
+    border-style: solid;
+    color: #959da5;
+    padding-left: 10px;
+}
+.gd-signature-information i {
+    position: absolute;
+    top: calc(100% - 42px);
+    left: 6px;
+    color: #959da5;
+}
+#gd-datepicker{
+    padding-left: 28px !important;
+}
+.gd-signature-information input::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    color: #959da5;
+}
+.gd-signature-information input::-moz-placeholder { /* Firefox 19+ */
+    color: #959da5;
+}
+.gd-signature-information input:-ms-input-placeholder { /* IE 10+ */
+    color: #959da5;
+}
+.gd-signature-information input:-moz-placeholder { /* Firefox 18- */
+    color: #959da5;
+}
+#gd-password-required{
+    display: none;
+    color: #FF0000;
+    top: calc(100% - 69px);
+    position: absolute;
+    font-size: 13px;
+}
+/*
+******************************************
+SIGNATURE INFORMATION REVIEW SLIDE
+******************************************
+*/
+.gd-signature-information-review {
+	position: absolute;
+    top: calc(100% - 412px);
+    left: 26px;
+    height: 67%;
+}
+.gd-signature-information-review label {
+    display: -webkit-box !important;
+    color: #3e4e5a !important; 
+    font-size: 14px !important;
+	float: left;
+    margin-right: 5px;
+}
+.gd-signature-information-review i {
+    font-size: 14px !important;
+    color: #959da5 !important;
+    position: inherit !important;
+}
+#gd-modal-signed {
+    position: absolute;
+    top: 20px;
+    left: 35px;
+}
+.gd-signature-information-review div {
+    margin-top: 25px;
+}
+
+/*
+******************************************
+SIGNATURE IMAGE
+******************************************
+*/
+#gd-image-signature {
+    width: initial !important;
+}
+.gd-draggable-helper, .ui-wrapper {
+    position: absolute !important;
+}
+.gd-image-signed {
+    top: 69px !important;
+}
+.gd-signature-image {
+    width: inherit;
+    height: inherit;
+}
+.gd-image-apply {
+    position: absolute;
+    top: -22px;
+    right: 20px;
+}
+.gd-image-edit{
+	display: none;
+	position: absolute;
+    top: -25px;
+    right: 0;
+    color: #3e4e5a;
+}
+.gd-image-apply > i {
+    color: #008000;
+}
+.gd-image-cancel {
+    right: 0px !important;
+}
+.gd-image-cancel > i {
+    color: #ff0000 !important;
+}
+/*
+******************************************
+SIGNATURE IMAGE PAGE SELECTING STEP
+******************************************
+*/
+#gd-pages-select-radio {
+	display: inline-grid;
+}
+#gd-radio-diapason {
+	top: 39px;
+}
+.gd-pages-label {
+	position: absolute;
+    top: 212px;
+    left: 147px;
+}
+.gd-pages {
+    position: absolute;
+    display: inline-block;
+    top: calc(100% - 146%);
+    left: 59%;
+    height: 250px;
+}
+.gd-pages input {
+	width: 72px;
+	margin-right: 10px;
+	font-size: 19px;
+}
+.gd-pages-diapason {
+	position: absolute;
+    top: 4%;
+    width: 256px;
+    left: 52%;
+}
+#gd-all-pages{
+    position: absolute;
+    top: calc(100% - 59%);
+    left: 29%;
+}
+/*
+******************************************
+SIGNATURE IMAGE ROTATION
+******************************************
+*/
+.ui-rotatable-handle {
+    cursor: pointer;
+    left: calc(100% - 56%);
+    top: -24px;
+    position: absolute;
+    color: #3e4e5a;
+}
+/*
+******************************************
+SIGNATURE IMAGE RESIZE HANDLES
+******************************************
+*/
+.ui-resizable-handle {
+    background-color: rgba(0,0,0,.75);
+    width: 8px;
+    height: 8px;
+}
+
+.ui-resizable-se {
+    bottom: -5px;
+    right: -5px;
+}
+.ui-resizable-e, .ui-resizable-w  {
+    top: calc(100% - 55%) !important;
+}
+.ui-resizable-s, .ui-resizable-n  {
+    left: calc(100% - 55%) !important;
+}
+/*
+******************************************
+TEMPORARY USED ELEMENTS EXCEL DOCUMENTS IMAGE SIGNING FIX
+******************************************
+*/
+.gd-cells-information {
+    top: calc(100% - 46%);
+    height: 135px;
+}
+.gd-cells-information input {
+    margin-bottom: 10px;
+    width: 65%;
+    height: 35px;
+    border-color: #e5e5e5;
+    border-style: solid;
+    color: #959da5;
+    padding-left: 10px;
+}
+.gd-cells-information input::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    color: #959da5;
+}
+.gd-cells-information input::-moz-placeholder { /* Firefox 19+ */
+    color: #959da5;
+}
+.gd-cells-information input:-ms-input-placeholder { /* IE 10+ */
+    color: #959da5;
+}
+.gd-cells-information input:-moz-placeholder { /* Firefox 18- */
+    color: #959da5;
+}
+.gd-cells-inputs {
+    position: absolute;
+    width: 200px;
+    top: 44px;
+    left: 19px;
+}

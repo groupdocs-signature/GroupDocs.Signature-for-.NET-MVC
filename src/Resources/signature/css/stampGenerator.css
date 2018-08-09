@@ -1,0 +1,143 @@
+#csg-container {
+    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    background-color: #ffffff;
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+#csg-container input {
+    border: 1px solid #dcdcdc;
+    padding: 5px;
+    color: #9c9c9c;
+    font-weight: 300;
+}
+
+#csg-container input[type="file"] {
+    border: 0;
+}
+
+#csg-container input:focus, button:focus {
+    outline: none;
+}
+
+#csg-params-header {
+    text-align: center;
+}
+
+#csg-params-header > button {
+    background-color: #2e84b9;
+    color: #ffffff;
+    text-transform: uppercase;
+    font-size: 10px;
+    border: 0;
+    margin-bottom: 10px;
+    padding: 7px 10px;
+}
+
+#csg-params-container {
+    position: absolute;
+    background-color: #e2e2e2;
+    width: 250px;
+    height: calc(100% - 20px);
+    padding: 10px;
+    overflow: scroll;
+}
+
+.csg-params {
+    background-color: #f7f7f7;
+    padding: 15px 20px;
+    margin-bottom: 10px;
+    position: relative;
+    border: 1px solid #ddd;
+}
+
+.csg-params h2 {
+    text-transform: uppercase;
+    font-weight: 400;
+    font-size: 13px;
+    margin: 0;
+    margin-left: -5px;
+}
+
+.csg-params h3 {
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 300;
+    font-size: 12px;
+    margin: 0;
+    margin-top: 15px;
+}
+
+.csg-params thead td {
+    font-size: 12px;
+    font-weight: 300;
+    color: #adadad;
+}
+
+.csg-params > div {
+    display: none;
+}
+
+.csg-params input[type="number"] {
+    width: 60px;
+}
+
+.csg-params input[type="text"] {
+    width: 185px;
+}
+
+.csg-params #csg-text-font {
+    width: 120px;
+}
+
+.csg-params .jscolor {
+    width: 70px;
+}
+
+.csg-params .csg-color-picker {
+    width: 55px;
+    height: 23px;
+    border: 1px solid #dcdcdc;
+}
+
+.csg-params .csg-params-toggle {
+    position: absolute;
+    top: 15px;
+    right: 50px;
+}
+
+.csg-params .csg-shape-remove {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+}
+
+.csg-params button {
+    background: none;
+    border: 0;
+}
+
+#csg-preview-container {
+    position: absolute;
+    left: 250px;
+    width: calc(100% - 320px);
+    height: 100%;
+}
+
+#csg-footer-container {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 20px;
+    padding: 5px 20px;
+}
+
+.csg-preview {
+    position: absolute;
+    top: 50px;
+}
+
+.bcPicker-palette {
+    top: 25px;
+}

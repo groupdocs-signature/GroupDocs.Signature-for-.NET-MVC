@@ -1,0 +1,115 @@
+#gd-qr-container {
+    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    background-color: #ffffff;
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+#gd-qr-container input {
+    border: 1px solid #dcdcdc;
+    padding: 5px;
+    color: #9c9c9c;
+    font-weight: 300;
+}
+
+#gd-qr-container input:focus, button:focus {
+    outline: none;
+}
+
+#gd-qr-params-header {
+    text-align: center;
+}
+
+#gd-qr-params-container {
+    background-color: #e2e2e2;
+    width: 100%;
+    height: 50%;
+    padding: 10px;
+}
+
+.gd-qr-params {      
+    padding: 15px 20px;
+    margin-bottom: 10px;
+    position: relative;  
+    height: 100%;
+}
+
+.gd-qr-params h3 {
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 300;
+    font-size: 12px;
+    margin: 0;
+    margin-top: -5px;
+}
+
+.gd-qr-params > div {
+    display: block;
+}
+
+.gd-qr-params input[type="number"] {
+    width: 60px;
+}
+
+.gd-qr-params input[type="text"] {
+    width: 185px;
+}
+
+.gd-qr-params #gd-qr-text-font {
+    width: 120px;
+}
+
+#gd-qr-text-table td {
+	padding-left: 25px;
+}
+
+.gd-qr-params .gd-qr-color-picker {
+    width: 75px;
+    height: 27px;
+    border: 1px solid #dcdcdc;	
+}
+
+.gd-qr-params table {
+	margin-top: 20px;
+    margin-left: -13px;
+}
+
+.gd-optical-label {
+    font-size: 13px;
+    text-align: left;	
+}
+
+.gd-border-style-wrapper {
+    border: 1px solid #ccc;
+    width: 120px;
+    border-radius: 3px;
+    overflow: hidden;
+    background: #fafafa;
+}
+
+.gd-border-style-select {
+    padding: 5px 8px;
+    border: none;
+    box-shadow: none;
+    background: transparent;
+    background-image: none;
+    -webkit-appearance: none;
+}
+
+#gd-qr-preview-container {
+    position: absolute;
+    left: calc(100% - 425px);
+    width: calc(100% - 320px);
+    height: 100%;
+    top: calc(100% - 109px);
+}
+
+.gd-qr-preview {
+    position: absolute;
+    top: 50px;
+}
+
+.bcPicker-palette {
+    top: 25px;
+}
