@@ -70,6 +70,7 @@ MODAL
 	position: absolute;
 	cursor: pointer;
     width: inherit;
+    height: 88px;
 }
 #gd-signature-upload-input::-webkit-file-upload-button{
 	height: 88px;

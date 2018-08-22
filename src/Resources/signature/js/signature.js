@@ -490,7 +490,7 @@ function loadSignaturesTree(dir, callback) {
         success: function(returnedData) {
             if(returnedData.message != undefined){
                 // open error popup
-                toggleModalDialog(false, "");              
+                toggleModalDialog(false, "");
                 printMessage(returnedData.message);
                 return;
             }
@@ -546,6 +546,9 @@ function loadSignaturesTree(dir, callback) {
         error: function(xhr, status, error) {
             var err = eval("(" + xhr.responseText + ")");
             console.log(err.Message);
+            // open error popup
+            toggleModalDialog(false, "");
+            printMessage(err.message);
         }
     }).done(function(data){
         if(typeof callback == "function") {
@@ -602,7 +605,7 @@ function uploadSignature(file, index, url) {
         processData: false,
         success: function(returnedData) {
             if(returnedData.message != undefined){
-                toggleModalDialog(false, "");              
+                toggleModalDialog(false, "");
                 // open error popup
                 printMessage(returnedData.message);
                 return;
@@ -612,6 +615,9 @@ function uploadSignature(file, index, url) {
         error: function(xhr, status, error) {
             var err = eval("(" + xhr.responseText + ")");
             console.log(err.Message);
+            toggleModalDialog(false, "");
+            // open error popup
+            printMessage(err.message);
         }
     });
 }
@@ -698,6 +704,9 @@ function sign() {
         error: function(xhr, status, error) {
             var err = eval("(" + xhr.responseText + ")");
             console.log(err.Message);
+            $('#gd-modal-spinner').hide();
+            // open error popup
+            printMessage(err.message);
         }
     });
 }
@@ -734,6 +743,9 @@ function saveDrawnImage(image) {
         error: function(xhr, status, error) {
             var err = eval("(" + xhr.responseText + ")");
             console.log(err.Message);
+            $('#gd-modal-spinner').hide();
+            // open error popup
+            printMessage(err.message);
         }
     });
 }
@@ -808,6 +820,9 @@ function saveDrawnStamp(callback) {
         error: function(xhr, status, error) {
             var err = eval("(" + xhr.responseText + ")");
             console.log(err.Message);
+            $('#gd-modal-spinner').hide();
+            // open error popup
+            printMessage(err.message);
         }
     }).done(function(data){
         if(typeof callback == "function") {
@@ -850,6 +865,9 @@ function saveDrawnOpticalCode(properties) {
         error: function(xhr, status, error) {
             var err = eval("(" + xhr.responseText + ")");
             console.log(err.Message);
+            $('#gd-modal-spinner').hide();
+            // open error popup
+            printMessage(err.message);
         }
     });
 }
@@ -885,6 +903,9 @@ function saveDrawnText(properties, callback) {
         error: function(xhr, status, error) {
             var err = eval("(" + xhr.responseText + ")");
             console.log(err.Message);
+            $('#gd-modal-spinner').hide();
+            // open error popup
+            printMessage(err.message);
         }
      }).done(function(data){
         if(typeof callback == "function") {
@@ -1103,7 +1124,7 @@ function getHtmlSignatureUploadModal(){
     var uploadButton = "";
     if(signature.signatureType != "stamp" && signature.signatureType != "text") {
         uploadButton = '<div class="gd-upload-signatures gd-modal-buttons">' +
-                            '<i class="fa fa-upload"></i>UPLOAD signature(S)<input id="gd-signature-upload-input" type="file" multiple>' +
+                            '<input id="gd-signature-upload-input" type="file" multiple><i class="fa fa-upload"></i>UPLOAD signature(S)' +
                         '</div>';
     }
     var browseButton =  '<div class="gd-browse-signatures gd-modal-buttons">'+
@@ -1393,7 +1414,7 @@ function loadSignatureImage() {
 		contentType: 'application/json',
 		success: function(returnedData) {
 			if(returnedData.message != undefined){
-			    toggleModalDialog(false, "");			
+			    toggleModalDialog(false, "");
 				// open error popup
 				printMessage(returnedData.message);
 				return;
@@ -1425,6 +1446,9 @@ function loadSignatureImage() {
 		error: function(xhr, status, error) {
 			var err = eval("(" + xhr.responseText + ")");
 			console.log(err.Message);
+			toggleModalDialog(false, "");
+            // open error popup
+			printMessage(err.message);
 		}
 	});	
 }

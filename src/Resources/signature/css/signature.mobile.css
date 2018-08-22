@@ -65,6 +65,7 @@
 	#gd-signature-upload-input {
 		height: 181px;
 		top: -138px;
+		width: 388px !important;
 	}
 
     .gd-signing-label {
