@@ -144,6 +144,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\SignatureController.cs" />
     <Compile Include="Products\Common\Config\ApplicationConfiguration.cs" />
+    <Compile Include="Products\Common\Config\CommonConfiguration.cs" />
     <Compile Include="Products\Common\Config\GlobalConfiguration.cs" />
     <Compile Include="Products\Common\Config\ServerConfiguration.cs" />
     <Compile Include="Products\Common\Entity\Web\ExceptionEntity.cs" />
@@ -188,7 +189,6 @@
     </Compile>
     <Compile Include="Products\Signature\Util\Directory\OutputDirectoryUtils.cs" />
     <Compile Include="Products\Common\Entity\Web\PostedDataEntity.cs" />
-    <Compile Include="Products\Viewer\Config\ViewerConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

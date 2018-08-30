@@ -3,7 +3,7 @@
     background-color: #ffffff;
     position: relative;
     width: 100%;
-    height: 100%;
+    height: 335px;
 }
 
 #csg-container input {
@@ -37,7 +37,6 @@
 
 #csg-params-container {
     position: absolute;
-    background-color: #e2e2e2;
     width: 250px;
     height: calc(100% - 20px);
     padding: 10px;
@@ -58,6 +57,7 @@
     font-size: 13px;
     margin: 0;
     margin-left: -5px;
+    text-align: left;
 }
 
 .csg-params h3 {

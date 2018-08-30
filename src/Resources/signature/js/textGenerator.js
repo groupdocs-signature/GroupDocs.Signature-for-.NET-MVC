@@ -112,7 +112,7 @@
 						// Text properties will be here
 					'</div>' +
 				'</div>' +
-				'<div id="gd-text-preview-container" style="width: ' + paramValues.width + 'px; height: ' + paramValues.height + 'px;"></div>' +
+				'<div id="gd-text-preview-container"></div>' +
 			'</div>';
 			return html;
 		},

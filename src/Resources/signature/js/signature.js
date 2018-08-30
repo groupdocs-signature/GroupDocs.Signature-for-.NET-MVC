@@ -262,19 +262,6 @@ $(document).ready(function(){
             uploadSignature(uploadFiles[i], i, "");
         }
         $(".gd-browse-signatures").show();
-        if(!/Mobi/.test(navigator.userAgent)) {
-            if (signature.signatureType == "image") {
-                $(".gd-upload-signatures").css("margin-left", "18%");               
-            } else {
-                $(".gd-upload-signatures").css("margin-left", "29%");
-            }
-        } else {
-			if (signature.signatureType == "image" || signature.signatureType == "digital") {
-				$(".gd-browse-signatures").css("left", "30%", "!important");
-				$(".gd-browse-signatures").css("top", "calc(100% - 67%)", "!important"); 
-				$(".gd-upload-signatures").css("left", "16%", "!important");				
-			}
-		}
     });
 
     //////////////////////////////////////////////////
@@ -1000,36 +987,8 @@ function openSigningFirstStepModal(){
     var browseSignatures = ($("#gd-signatures").children().length > 0) ? true: false;
     switchSlide(0, "", "right");
     // show or hide the browse button, depends on signature availability in the storage
-    positionFirstStepButtons(browseSignatures);	
-}
-
-/**
- * Adjust buttons positioning - depends on browse signatures button appearing
- */
-function positionFirstStepButtons(browseSignatures){
-	if(!browseSignatures){
-        $(".gd-browse-signatures").hide(); 
-		if(!/Mobi/.test(navigator.userAgent)){			
-			if(signature.signatureType == "text" || signature.signatureType == "stamp"){
-				$(".gd-draw-signatures").css("margin-left", "39%");   
-			} else if (signature.signatureType == "digital"){
-				$(".gd-upload-signatures").css("margin-left", "38%");
-			}		
-		}
-    } else {   
-		if(/Mobi/.test(navigator.userAgent)){	
-			if(signature.signatureType == "image" || signature.signatureType == "digital" ){
-				$(".gd-browse-signatures").css("left", "30%", "!important");
-				$(".gd-browse-signatures").css("top", "calc(100% - 67%)", "!important"); 
-			}
-		} else {
-			$(".gd-upload-signatures").css("margin-left", "15%");		
-			if(signature.signatureType == "text" || signature.signatureType == "stamp"){
-				$(".gd-browse-signatures").css("margin-left", "29%");   
-			} else if (signature.signatureType == "digital"){
-				$(".gd-upload-signatures").css("margin-left", "29%");
-			}	
-		}
+    if(!browseSignatures){
+        $(".gd-browse-signatures").hide();
     }
 }
 
@@ -1124,16 +1083,16 @@ function getHtmlSignatureUploadModal(){
     var uploadButton = "";
     if(signature.signatureType != "stamp" && signature.signatureType != "text") {
         uploadButton = '<div class="gd-upload-signatures gd-modal-buttons">' +
-                            '<input id="gd-signature-upload-input" type="file" multiple><i class="fa fa-upload"></i>UPLOAD signature(S)' +
+                            '<input id="gd-signature-upload-input" type="file" multiple><i class="fa fa-upload"></i>Upload' +
                         '</div>';
     }
     var browseButton =  '<div class="gd-browse-signatures gd-modal-buttons">'+
-                            '<i class="fa fa-folder-open"></i>BROWSE signature(S)'+
+                            '<i class="fa fa-folder-open"></i>Open'+
                         '</div>';
     var drawImage = "";
     if (signature.signatureType != "digital"){
         drawImage = '<div class="gd-draw-signatures gd-modal-buttons">'+
-                        '<i class="fa fa-pencil-square-o" aria-hidden="true"></i>DRAW signature(S)'+
+                        '<i class="fa fa-pencil-square-o" aria-hidden="true"></i>New'+
                     '</div>';
     }
     return uploadButton + browseButton + drawImage;

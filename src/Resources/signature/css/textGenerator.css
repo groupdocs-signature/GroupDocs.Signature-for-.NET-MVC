@@ -1,9 +1,5 @@
 #gd-text-container {
     font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    background-color: #ffffff;
-    position: relative;
-    width: 100%;
-    height: 100%;
 }
 
 #gd-text-container input {
@@ -11,7 +7,7 @@
     padding: 5px;
     color: #9c9c9c;
     margin-bottom: 10px;
-	margin-right: 10px;
+    margin-right: 10px;
 }
 
 #gd-text-container input:focus, button:focus {
@@ -19,23 +15,13 @@
 }
 
 #gd-text-params-header {
-    text-align: center;
 }
 
-#gd-text-params-container {
-    background-color: #e2e2e2;
-    width: 92%;
-    height: 44%;
-    padding: 10px;
-    position: fixed;  
-}
+#gd-text-params-container {}
 
-.gd-text-params {   
+.gd-text-params {
     padding: 15px 20px;
     margin-bottom: 10px;
-    position: relative;
-    border: 1px solid #ddd;
-	height: 100%;
 }
 
 .gd-text-params h3 {
@@ -76,7 +62,7 @@
 }
 
 .gd-text-checkboxes {
-	width: 244px;
+    width: 244px;
     margin-top: -25px;
 }
 
@@ -85,19 +71,19 @@
 }
 
 .gd-text-checkbox {
-	display: inline-grid;
+    display: inline-grid;
 }
 
 .gd-text-italic {
-	margin-left: 20px;
+    margin-left: 20px;
 }
 
 .gd-text-underline {
-	margin-left: 10px;
+    margin-left: 10px;
 }
 
 .gd-text-checkbox input {
-	margin: 50px auto;
+    margin: 50px auto;
     position: relative;
     display: block;
     width: 100px;
@@ -174,11 +160,11 @@ input[type="checkbox"]:checked ~ .gd-text-helper::after {
 
 .gd-text-color {
     margin-right: 11px;
-	width: 88px;
+    width: 88px;
 }
 
 .gd-text-background-color {
-	width: 107px;
+    width: 107px;
 }
 
 #gd-text-underline {
@@ -190,7 +176,7 @@ input[type="checkbox"]:checked ~ .gd-text-helper::after {
 }
 
 #gd-text-border-style-line div {
-	margin-bottom: 12px;
+    margin-bottom: 12px;
 }
 
 .gd-border-style-wrapper {
@@ -208,17 +194,11 @@ input[type="checkbox"]:checked ~ .gd-text-helper::after {
     background: transparent;
     background-image: none;
     -webkit-appearance: none;
-	width: 100%;
+    width: 100%;
 }
 
 #gd-text-font {
     width: 120px;
-}
-
-#gd-text-preview-container {
-    position: absolute;
-    left: calc(100% - 446px);
-    top: calc(100% - 56px);
 }
 
 .gd-text-preview {

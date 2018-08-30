@@ -28,7 +28,7 @@
 
 #bcPaint-canvas-container{
   width: 100%;
-  height: calc(100% - 50px);
+  height: 250px;
 }
 
 #bcPaint-canvas-container > canvas{

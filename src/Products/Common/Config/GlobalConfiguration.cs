@@ -1,5 +1,4 @@
 ﻿using GroupDocs.Signature.MVC.Products.Signature.Config;
-using GroupDocs.Signature.MVC.Products.Viewer.Config;
 
 namespace GroupDocs.Signature.MVC.Products.Common.Config
 {
@@ -11,7 +10,7 @@ namespace GroupDocs.Signature.MVC.Products.Common.Config
         public ServerConfiguration Server;
         public ApplicationConfiguration Application;
         public SignatureConfiguration Signature;
-        public ViewerConfiguration Viewer;
+        public CommonConfiguration Common;
 
         /// <summary>
         /// Get all configurations
@@ -21,7 +20,7 @@ namespace GroupDocs.Signature.MVC.Products.Common.Config
             Server = new ServerConfiguration();
             Application = new ApplicationConfiguration();
             Signature = new SignatureConfiguration();
-            Viewer = new ViewerConfiguration();
+            Common = new CommonConfiguration();
         }
     }
 }

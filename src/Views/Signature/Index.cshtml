@@ -38,19 +38,19 @@
     <script type="text/javascript">
         $('#element').viewer({
             applicationPath: 'http://@config.Server.HostAddress:@config.Server.HttpPort/signature',
-            defaultDocument: '@config.Viewer.DefaultDocument',
+            defaultDocument: '@config.Signature.DefaultDocument',
             htmlMode: false,
-            preloadPageCount: @config.Viewer.PreloadPageCount,
+            preloadPageCount: @config.Signature.PreloadPageCount,
             zoom : false,
-            pageSelector: @config.Viewer.isPageSelector.ToString().ToLowerInvariant(),
+            pageSelector: @config.Common.isPageSelector.ToString().ToLowerInvariant(),
             search: false,
             thumbnails: false,
             rotate: false,
-            download: @config.Viewer.isDownload.ToString().ToLowerInvariant(),
-            upload: @config.Viewer.isUpload.ToString().ToLowerInvariant(),
-            print: @config.Viewer.isPrint.ToString().ToLowerInvariant(),
-            browse: @config.Viewer.isBrowse.ToString().ToLowerInvariant(),
-            rewrite: @config.Viewer.isRewrite.ToString().ToLowerInvariant()
+            download: @config.Common.isDownload.ToString().ToLowerInvariant(),
+            upload: @config.Common.isUpload.ToString().ToLowerInvariant(),
+            print: @config.Common.isPrint.ToString().ToLowerInvariant(),
+            browse: @config.Common.isBrowse.ToString().ToLowerInvariant(),
+            rewrite: @config.Common.isRewrite.ToString().ToLowerInvariant()
             });
         $('#element').signature({
             textSignature:  @config.Signature.isTextSignature.ToString().ToLowerInvariant(),

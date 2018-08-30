@@ -9,17 +9,19 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Config
     /// </summary>
     public class SignatureConfiguration : ConfigurationSection
     {
-        public string FilesDirectory;
-        public string OutputDirectory;
-        public string DataDirectory;
-        public bool isTextSignature;
-        public bool isImageSignature;
-        public bool isDigitalSignature;
-        public bool isQrCodeSignature;
-        public bool isBarCodeSignature;
-        public bool isStampSignature;
-        public bool isDownloadOriginal;
-        public bool isDownloadSigned;
+        public string FilesDirectory { get; set; }
+        public string OutputDirectory { get; set; }
+        public string DefaultDocument { get; set; }
+        public string DataDirectory { get; set; }
+        public int PreloadPageCount { get; set; }
+        public bool isTextSignature { get; set; }
+        public bool isImageSignature { get; set; }
+        public bool isDigitalSignature { get; set; }
+        public bool isQrCodeSignature { get; set; }
+        public bool isBarCodeSignature { get; set; }
+        public bool isStampSignature { get; set; }
+        public bool isDownloadOriginal { get; set; }
+        public bool isDownloadSigned { get; set; }
         private NameValueCollection signatureConfiguration = (NameValueCollection)System.Configuration.ConfigurationManager.GetSection("signatureConfiguration");
 
         /// <summary>
@@ -38,6 +40,8 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Config
             isStampSignature = Convert.ToBoolean(signatureConfiguration["isStampSignature"]);
             isDownloadOriginal = Convert.ToBoolean(signatureConfiguration["isDownloadOriginal"]);
             isDownloadSigned = Convert.ToBoolean(signatureConfiguration["isDownloadSigned"]);
+            DefaultDocument = signatureConfiguration["defaultDocument"];
+            PreloadPageCount = Convert.ToInt32(signatureConfiguration["preloadPageCount"]);
         }
     }
 }

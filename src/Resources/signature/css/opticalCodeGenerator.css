@@ -1,9 +1,7 @@
 #gd-qr-container {
     font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
     background-color: #ffffff;
-    position: relative;
     width: 100%;
-    height: 100%;
 }
 
 #gd-qr-container input {
@@ -22,17 +20,13 @@
 }
 
 #gd-qr-params-container {
-    background-color: #e2e2e2;
     width: 100%;
-    height: 50%;
-    padding: 10px;
 }
 
-.gd-qr-params {      
+.gd-qr-params {
     padding: 15px 20px;
     margin-bottom: 10px;
-    position: relative;  
-    height: 100%;
+    position: relative;
 }
 
 .gd-qr-params h3 {
@@ -61,23 +55,23 @@
 }
 
 #gd-qr-text-table td {
-	padding-left: 25px;
+    padding-left: 25px;
 }
 
 .gd-qr-params .gd-qr-color-picker {
     width: 75px;
     height: 27px;
-    border: 1px solid #dcdcdc;	
+    border: 1px solid #dcdcdc;  
 }
 
 .gd-qr-params table {
-	margin-top: 20px;
+    margin-top: 20px;
     margin-left: -13px;
 }
 
 .gd-optical-label {
     font-size: 13px;
-    text-align: left;	
+    text-align: left;   
 }
 
 .gd-border-style-wrapper {
@@ -98,11 +92,9 @@
 }
 
 #gd-qr-preview-container {
-    position: absolute;
-    left: calc(100% - 425px);
-    width: calc(100% - 320px);
-    height: 100%;
-    top: calc(100% - 109px);
+    width: 150px;
+    height: 150px;
+    margin: 50px auto;
 }
 
 .gd-qr-preview {
