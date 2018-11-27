@@ -1,5 +1,5 @@
-﻿using GroupDocs.Signature.MVC.Products.Signature.Entity.Web;
-using GroupDocs.Signature.MVC.Products.Signature.Util.Comparator;
+﻿using GroupDocs.Signature.MVC.Products.Common.Util.Comparator;
+using GroupDocs.Signature.MVC.Products.Signature.Entity.Web;
 using System;
 using System.Collections.Generic;
 using System.IO;
