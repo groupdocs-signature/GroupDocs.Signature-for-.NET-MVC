@@ -51,18 +51,11 @@ https://www.youtube.com/watch?v=pA98PkdXcN8
 1. Download/Clone GroupDocs.Signature for .NET MVC Example.
 2. Extract/Copy GroupDocs.Signature for .NET MVC Example to working directory.
 3. Navigate to GroupDocs.Signature for .NET MVC Example root directory.
-4. Update params in `configuration.yml` to meet your requirements.
+4. Update common parameters in `web.config` and example related properties in the 'configuration.yml' to meet your requirements.
 5. Open console and type `cd 'GroupDocs.Signature for .NET MVC Example root directory'`, press enter.
 6. In console type following command `mvn clean compile exec:.NET`, press enter.
 7. Go to `http://localhost:{PORT}/signature/`.
 PORT - port number specified in `configuration.yml` (by default http://localhost:8080/signature/).
-
-## How to run in standalone mode
-1. Navigate to GroupDocs.Signature for .NET MVC Sample root directory.
-2. Update parameters in `web.config` to meet your requirements.
-3. Execute the 'LaunchServer.bat' file.
-4. Go to `http://localhost:{PORT}/`.
-PORT - port number specified in `web.config` and in 'LaunchServer.bat'(by default http://localhost:8080).
 
 ## Resources
 - **Website:** [www.groupdocs.com](http://www.groupdocs.com)
