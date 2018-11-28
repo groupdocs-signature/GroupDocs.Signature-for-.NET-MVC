@@ -9,7 +9,6 @@ using GroupDocs.Signature.MVC.Products.Signature.Entity.Xml;
 using GroupDocs.Signature.MVC.Products.Signature.Loader;
 using GroupDocs.Signature.MVC.Products.Signature.Signer;
 using GroupDocs.Signature.MVC.Products.Signature.Util.Directory;
-using GroupDocs.Signature.MVC.Products.Common.Resources;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;

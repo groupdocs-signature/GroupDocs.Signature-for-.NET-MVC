@@ -9,17 +9,17 @@ namespace GroupDocs.Signature.MVC.Products.Common.Config
     {
         public ServerConfiguration Server;
         public ApplicationConfiguration Application;
-        public SignatureConfiguration Signature;
         public CommonConfiguration Common;
-
+        public SignatureConfiguration Signature;
+      
         /// <summary>
         /// Get all configurations
         /// </summary>
         public GlobalConfiguration()
-        {
+        {            
             Server = new ServerConfiguration();
             Application = new ApplicationConfiguration();
-            Signature = new SignatureConfiguration();
+            Signature = new SignatureConfiguration();          
             Common = new CommonConfiguration();
         }
     }

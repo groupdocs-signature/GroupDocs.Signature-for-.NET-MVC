@@ -1,47 +1,68 @@
-﻿using System;
-using System.Collections.Specialized;
-using System.Configuration;
+﻿using GroupDocs.Signature.MVC.Products.Common.Config;
+using GroupDocs.Signature.MVC.Products.Common.Util.Parser;
+using System;
+using System.IO;
+using System.Linq;
 
 namespace GroupDocs.Signature.MVC.Products.Signature.Config
 {
     /// <summary>
     /// SignatureConfiguration
     /// </summary>
-    public class SignatureConfiguration : ConfigurationSection
+    public class SignatureConfiguration
     {
-        public string FilesDirectory { get; set; }
-        public string OutputDirectory { get; set; }
-        public string DefaultDocument { get; set; }
-        public string DataDirectory { get; set; }
-        public int PreloadPageCount { get; set; }
-        public bool isTextSignature { get; set; }
-        public bool isImageSignature { get; set; }
-        public bool isDigitalSignature { get; set; }
-        public bool isQrCodeSignature { get; set; }
-        public bool isBarCodeSignature { get; set; }
-        public bool isStampSignature { get; set; }
-        public bool isDownloadOriginal { get; set; }
-        public bool isDownloadSigned { get; set; }
-        private NameValueCollection signatureConfiguration = (NameValueCollection)System.Configuration.ConfigurationManager.GetSection("signatureConfiguration");
+        public string FilesDirectory = "DocumentSamples/Signature";
+        public string OutputDirectory = "";
+        public string DefaultDocument = "";
+        public string DataDirectory = "";
+        public int PreloadPageCount = 0;
+        public bool isTextSignature = true;
+        public bool isImageSignature = true;
+        public bool isDigitalSignature = true;
+        public bool isQrCodeSignature = true;
+        public bool isBarCodeSignature = true;
+        public bool isStampSignature = true;
+        public bool isDownloadOriginal = true;
+        public bool isDownloadSigned = true;      
 
         /// <summary>
         /// Get signature configuration section from the Web.config
         /// </summary>
         public SignatureConfiguration()
         {
-            FilesDirectory = signatureConfiguration["filesDirectory"];
-            OutputDirectory = signatureConfiguration["outputDirectory"];
-            DataDirectory = signatureConfiguration["dataDirectory"];
-            isTextSignature = Convert.ToBoolean(signatureConfiguration["isTextSignature"]);
-            isImageSignature = Convert.ToBoolean(signatureConfiguration["isImageSignature"]);
-            isDigitalSignature = Convert.ToBoolean(signatureConfiguration["isDigitalSignature"]);
-            isQrCodeSignature = Convert.ToBoolean(signatureConfiguration["isQrCodeSignature"]);
-            isBarCodeSignature = Convert.ToBoolean(signatureConfiguration["isBarCodeSignature"]);
-            isStampSignature = Convert.ToBoolean(signatureConfiguration["isStampSignature"]);
-            isDownloadOriginal = Convert.ToBoolean(signatureConfiguration["isDownloadOriginal"]);
-            isDownloadSigned = Convert.ToBoolean(signatureConfiguration["isDownloadSigned"]);
-            DefaultDocument = signatureConfiguration["defaultDocument"];
-            PreloadPageCount = Convert.ToInt32(signatureConfiguration["preloadPageCount"]);
+            YamlParser parser = new YamlParser();
+            dynamic configuration = parser.GetConfiguration("signature");
+            ConfigurationValuesGetter valuesGetter = new ConfigurationValuesGetter(configuration);
+            // get Comparison configuration section from the web.config            
+            FilesDirectory = valuesGetter.GetStringPropertyValue("filesDirectory", FilesDirectory);
+            if (!IsFullPath(FilesDirectory))
+            {
+                FilesDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, FilesDirectory);
+                if (!Directory.Exists(FilesDirectory))
+                {
+                    Directory.CreateDirectory(FilesDirectory);
+                }
+            }
+            OutputDirectory = valuesGetter.GetStringPropertyValue("outputDirectory", OutputDirectory);
+            DataDirectory = valuesGetter.GetStringPropertyValue("dataDirectory", DataDirectory);
+            DefaultDocument = valuesGetter.GetStringPropertyValue("defaultDocument", DefaultDocument);
+            isTextSignature = valuesGetter.GetBooleanPropertyValue("textSignature", isTextSignature);
+            isImageSignature = valuesGetter.GetBooleanPropertyValue("imageSignature", isImageSignature);
+            isDigitalSignature = valuesGetter.GetBooleanPropertyValue("digitalSignature", isDigitalSignature);
+            isQrCodeSignature = valuesGetter.GetBooleanPropertyValue("qrCodeSignature", isQrCodeSignature);
+            isBarCodeSignature = valuesGetter.GetBooleanPropertyValue("barCodeSignature", isBarCodeSignature);
+            isStampSignature = valuesGetter.GetBooleanPropertyValue("stampSignature", isStampSignature);
+            isDownloadOriginal = valuesGetter.GetBooleanPropertyValue("downloadOriginal", isDownloadOriginal);
+            isDownloadSigned = valuesGetter.GetBooleanPropertyValue("downloadSigned", isDownloadSigned);            
+            PreloadPageCount = valuesGetter.GetIntegerPropertyValue("preloadPageCount", PreloadPageCount);
+        }
+
+        private static bool IsFullPath(string path)
+        {
+            return !String.IsNullOrWhiteSpace(path)
+                && path.IndexOfAny(System.IO.Path.GetInvalidPathChars().ToArray()) == -1
+                && Path.IsPathRooted(path)
+                && !Path.GetPathRoot(path).Equals(Path.DirectorySeparatorChar.ToString(), StringComparison.Ordinal);
         }
     }
 }

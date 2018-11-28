@@ -1,7 +1,5 @@
-﻿
+﻿using GroupDocs.Signature.MVC.Products.Common.Util.Directory;
 using GroupDocs.Signature.MVC.Products.Signature.Config;
-using System;
-using System.IO;
 
 namespace GroupDocs.Signature.MVC.Products.Signature.Util.Directory
 {

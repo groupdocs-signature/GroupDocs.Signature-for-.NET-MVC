@@ -137,6 +137,9 @@
       <Private>True</Private>
       <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
+    <Reference Include="YamlDotNet, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\YamlDotNet.5.2.1\lib\net45\YamlDotNet.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -145,6 +148,7 @@
     <Compile Include="Controllers\SignatureController.cs" />
     <Compile Include="Products\Common\Config\ApplicationConfiguration.cs" />
     <Compile Include="Products\Common\Config\CommonConfiguration.cs" />
+    <Compile Include="Products\Common\Config\ConfigurationValuesGetter.cs" />
     <Compile Include="Products\Common\Config\GlobalConfiguration.cs" />
     <Compile Include="Products\Common\Config\ServerConfiguration.cs" />
     <Compile Include="Products\Common\Entity\Web\ExceptionEntity.cs" />
@@ -152,6 +156,10 @@
     <Compile Include="Products\Common\Entity\Web\LoadedPageEntity.cs" />
     <Compile Include="Products\Common\Entity\Web\UploadedDocumentEntity.cs" />
     <Compile Include="Products\Common\Resources\Resources.cs" />
+    <Compile Include="Products\Common\Util\Comparator\FileNameComparator.cs" />
+    <Compile Include="Products\Common\Util\Comparator\FileTypeComparator.cs" />
+    <Compile Include="Products\Common\Util\Directory\IDirectoryUtils.cs" />
+    <Compile Include="Products\Common\Util\Parser\YamlParser.cs" />
     <Compile Include="Products\Signature\Controllers\SignatureApiController.cs" />
     <Compile Include="Products\Signature\Config\SignatureConfiguration.cs" />
     <Compile Include="Products\Signature\Entity\Directory\BarcodeDataDirectoryEntity.cs" />
