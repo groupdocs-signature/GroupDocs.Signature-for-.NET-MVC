@@ -1,6 +1,8 @@
 # GroupDocs.Signature for .NET MVC Example
 ###### version 1.13.0
 
+[![Build status](https://ci.appveyor.com/api/projects/status/r64t7oi4a00qy6n4/branch/master?svg=true)](https://ci.appveyor.com/project/egorovpavel/groupdocs-signature-for-net-mvc/branch/master)
+
 
 ## System Requirements
 - .NET Framework 4.5
