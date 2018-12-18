@@ -1,7 +1,6 @@
 ﻿using GroupDocs.Signature.MVC.Products.Common.Entity.Web;
 using System;
 using System.IO;
-using System.Web;
 
 namespace GroupDocs.Signature.MVC.Products.Common.Resources
 {
@@ -16,7 +15,7 @@ namespace GroupDocs.Signature.MVC.Products.Common.Resources
         /// <param name="directory">Directory where to search files</param>
         /// <param name="fileName">Uploaded file name</param>
         /// <returns></returns>
-        public string GetFreeFileName(string directory, string fileName)
+        public static string GetFreeFileName(string directory, string fileName)
         {
             string resultFileName = "";
             try

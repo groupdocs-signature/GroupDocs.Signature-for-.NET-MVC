@@ -136,9 +136,7 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Loader
             try
             {
                 if (imageFiles != null && imageFiles.Length > 0)
-                {
-
-                    FileInfo xmls = new FileInfo(xmlPath);
+                {                    
                     string[] xmlFiles = Directory.GetFiles(xmlPath);
                     List<String> filesList = new List<string>();                  
                     foreach (string imageFile in imageFiles)

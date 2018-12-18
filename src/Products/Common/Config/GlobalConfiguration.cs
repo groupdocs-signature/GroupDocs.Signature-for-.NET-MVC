@@ -11,7 +11,7 @@ namespace GroupDocs.Signature.MVC.Products.Common.Config
         public ApplicationConfiguration Application;
         public CommonConfiguration Common;
         public SignatureConfiguration Signature;
-      
+
         /// <summary>
         /// Get all configurations
         /// </summary>
@@ -19,7 +19,7 @@ namespace GroupDocs.Signature.MVC.Products.Common.Config
         {            
             Server = new ServerConfiguration();
             Application = new ApplicationConfiguration();
-            Signature = new SignatureConfiguration();          
+            Signature = new SignatureConfiguration();
             Common = new CommonConfiguration();
         }
     }
