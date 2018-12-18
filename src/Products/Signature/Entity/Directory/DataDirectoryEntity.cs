@@ -10,8 +10,8 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Entity.Directory
         public string Path { get; set; }
         public string PreviewPath { get; set; }
         public string XmlPath { get; set; }
-        public static string DATA_PREVIEW_FOLDER = "/Preview";
-        public static string DATA_XML_FOLDER = "/XML";        
+        public static readonly string DATA_PREVIEW_FOLDER = "/Preview";
+        public static readonly string DATA_XML_FOLDER = "/XML";        
         protected SignatureConfiguration signatureConfiguration;
         protected string currentDirectoryPath;
 
