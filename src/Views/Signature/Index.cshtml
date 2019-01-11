@@ -37,24 +37,17 @@
 </head>
 <body>
     <div id="element"></div>
-    <script type="text/javascript">
-        $('#element').viewer({
+    <script type="text/javascript">        
+        $('#element').signature({
             applicationPath: 'http://@config.Server.HostAddress:@config.Server.HttpPort/signature',
             defaultDocument: '@config.Signature.DefaultDocument',
-            htmlMode: false,
             preloadPageCount: @config.Signature.PreloadPageCount,
-            zoom : false,
             pageSelector: @config.Common.isPageSelector.ToString().ToLowerInvariant(),
-            search: false,
-            thumbnails: false,
-            rotate: false,
             download: @config.Common.isDownload.ToString().ToLowerInvariant(),
             upload: @config.Common.isUpload.ToString().ToLowerInvariant(),
             print: @config.Common.isPrint.ToString().ToLowerInvariant(),
             browse: @config.Common.isBrowse.ToString().ToLowerInvariant(),
-            rewrite: @config.Common.isRewrite.ToString().ToLowerInvariant()
-            });
-        $('#element').signature({
+            rewrite: @config.Common.isRewrite.ToString().ToLowerInvariant(),
             textSignature:  @config.Signature.isTextSignature.ToString().ToLowerInvariant(),
             imageSignature: @config.Signature.isImageSignature.ToString().ToLowerInvariant(),
             digitalSignature: @config.Signature.isDigitalSignature.ToString().ToLowerInvariant(),
