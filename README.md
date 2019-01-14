@@ -1,5 +1,5 @@
 # GroupDocs.Signature for .NET MVC Example
-###### version 1.15.0
+###### version 1.16.0
 
 [![Build status](https://ci.appveyor.com/api/projects/status/r64t7oi4a00qy6n4/branch/master?svg=true)](https://ci.appveyor.com/project/egorovpavel/groupdocs-signature-for-net-mvc/branch/master)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/bff0b328abbc4b62a7c80177d81b47cc)](https://www.codacy.com/app/GroupDocs/GroupDocs.Signature-for-.NET-MVC?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=groupdocs-signature/GroupDocs.Signature-for-.NET-MVC&amp;utm_campaign=Badge_Grade)

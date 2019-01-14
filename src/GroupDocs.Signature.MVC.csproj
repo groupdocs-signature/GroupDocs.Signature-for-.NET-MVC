@@ -45,8 +45,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="GroupDocs.Signature, Version=18.10.0.0, Culture=neutral, PublicKeyToken=716fcc553a201e56, processorArchitecture=MSIL">
-      <HintPath>..\packages\GroupDocs.Signature.18.10.0\lib\GroupDocs.Signature.dll</HintPath>
+    <Reference Include="GroupDocs.Signature, Version=18.12.0.0, Culture=neutral, PublicKeyToken=716fcc553a201e56, processorArchitecture=MSIL">
+      <HintPath>..\packages\GroupDocs.Signature.18.12.0\lib\GroupDocs.Signature.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
@@ -171,7 +171,6 @@
     <Compile Include="Products\Signature\Entity\Directory\QrCodeDataDirectoryEntity.cs" />
     <Compile Include="Products\Signature\Entity\Directory\StampDataDirectoryEntity.cs" />
     <Compile Include="Products\Signature\Entity\Directory\TextDataDirectoryEntity.cs" />
-    <Compile Include="Products\Common\Entity\Web\DocumentDescriptionEntity.cs" />
     <Compile Include="Products\Signature\Entity\Web\SignatureDataEntity.cs" />
     <Compile Include="Products\Signature\Entity\Web\SignatureFileDescriptionEntity.cs" />
     <Compile Include="Products\Signature\Entity\Web\SignaturePostedDataEntity.cs" />
