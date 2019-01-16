@@ -8,7 +8,6 @@
 - .NET Framework 4.5
 - Visual Studio 2015
 
-
 ## Description
 You asked, we delivered!
 Welcome our new and improved GroupDocs.Signature UI - native, simple, fully configurable and optimized .NET document Signature application.
