@@ -3,6 +3,7 @@ using GroupDocs.Signature.Domain;
 using GroupDocs.Signature.Handler;
 using GroupDocs.Signature.Options;
 using GroupDocs.Signature.MVC.Products.Common.Entity.Web;
+using GroupDocs.Signature.MVC.Products.Common.Resources;
 using GroupDocs.Signature.MVC.Products.Signature.Entity.Directory;
 using GroupDocs.Signature.MVC.Products.Signature.Entity.Web;
 using GroupDocs.Signature.MVC.Products.Signature.Entity.Xml;
@@ -54,6 +55,8 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Controllers
             config.OutputPath = DirectoryUtils.OutputDirectory.GetPath();
             // initialize instance for the Image mode
             SignatureHandler = new SignatureHandler(config);
+            License license = new License();
+            license.SetLicense(GlobalConfiguration.Application.LicensePath);
         }
 
 
@@ -124,13 +127,12 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Controllers
                         fileList = signatureLoader.LoadFiles();
                         break;
                 }
-                
                 return Request.CreateResponse(HttpStatusCode.OK, fileList);
             }
             catch (System.Exception ex)
             {
                 // set exception message
-                return Request.CreateResponse(HttpStatusCode.OK, new GroupDocs.Signature.MVC.Products.Common.Resources.Resources().GenerateException(ex));
+                return Request.CreateResponse(HttpStatusCode.OK, new Common.Resources.Resources().GenerateException(ex));
             }
         }
 
@@ -167,14 +169,18 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Controllers
                     pagesDescription.Add(description);
                 }
                 LoadDocumentEntity loadDocumentEntity = new LoadDocumentEntity();
-                loadDocumentEntity.guid = documentGuid;
-                loadDocumentEntity.pages = pagesDescription;
+                loadDocumentEntity.SetGuid(documentGuid);
+                foreach (PageDescriptionEntity pageDescription in pagesDescription)
+                {
+                    loadDocumentEntity.SetPages(pageDescription);
+                }
                 // return document description
                 return Request.CreateResponse(HttpStatusCode.OK, loadDocumentEntity);
             }
             catch (System.Exception ex)
             {
-                return Request.CreateResponse(HttpStatusCode.OK, new GroupDocs.Signature.MVC.Products.Common.Resources.Resources().GenerateException(ex));
+                // set exception message
+                return Request.CreateResponse(HttpStatusCode.OK, new Common.Resources.Resources().GenerateException(ex, password));
             }
         }
 
@@ -187,12 +193,13 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Controllers
         [Route("loadDocumentPage")]
         public HttpResponseMessage LoadDocumentPage(SignaturePostedDataEntity postedData)
         {
+            string password = "";
             try
             {
                 // get/set parameters
                 string documentGuid = postedData.guid;
                 int pageNumber = postedData.page;
-                string password = postedData.password;
+                password = postedData.password;
                 LoadedPageEntity loadedPage = new LoadedPageEntity();
                 // get page image
                 byte[] bytes = SignatureHandler.GetPageImage(documentGuid, pageNumber, password, null, 100);
@@ -204,7 +211,8 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Controllers
             }
             catch (System.Exception ex)
             {
-                return Request.CreateResponse(HttpStatusCode.OK, new GroupDocs.Signature.MVC.Products.Common.Resources.Resources().GenerateException(ex));
+                // set exception message
+                return Request.CreateResponse(HttpStatusCode.OK, new Common.Resources.Resources().GenerateException(ex, password));
             }
         }
 
@@ -292,7 +300,7 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Controllers
                             }
                             else
                             {
-                                fileSavePath = GroupDocs.Signature.MVC.Products.Common.Resources.Resources.GetFreeFileName(fileSavePath, httpPostedFile.FileName);
+                                fileSavePath = Common.Resources.Resources.GetFreeFileName(fileSavePath, httpPostedFile.FileName);
                             }
 
                             // Save the uploaded file to "UploadedFiles" folder
@@ -314,7 +322,7 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Controllers
                         }
                         else
                         {
-                            fileSavePath = GroupDocs.Signature.MVC.Products.Common.Resources.Resources.GetFreeFileName(fileSavePath, fileName);
+                            fileSavePath = Common.Resources.Resources.GetFreeFileName(fileSavePath, fileName);
                         }
                         // Download the Web resource and save it into the current filesystem folder.
                         client.DownloadFile(url, fileSavePath);
@@ -337,7 +345,7 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Controllers
             catch (System.Exception ex)
             {
                 // set exception message
-                return Request.CreateResponse(HttpStatusCode.OK, new GroupDocs.Signature.MVC.Products.Common.Resources.Resources().GenerateException(ex));
+                return Request.CreateResponse(HttpStatusCode.OK, new Common.Resources.Resources().GenerateException(ex));
             }
         }
 
@@ -371,7 +379,7 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Controllers
             catch (System.Exception ex)
             {
                 // set exception message
-                return Request.CreateResponse(HttpStatusCode.OK, new GroupDocs.Signature.MVC.Products.Common.Resources.Resources().GenerateException(ex));
+                return Request.CreateResponse(HttpStatusCode.OK, new Common.Resources.Resources().GenerateException(ex));
             }
         }
 
@@ -432,7 +440,7 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Controllers
             catch (System.Exception ex)
             {
                 // set exception message
-                return Request.CreateResponse(HttpStatusCode.OK, new GroupDocs.Signature.MVC.Products.Common.Resources.Resources().GenerateException(ex));
+                return Request.CreateResponse(HttpStatusCode.OK, new Common.Resources.Resources().GenerateException(ex));
             }
         }
 
@@ -481,7 +489,7 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Controllers
             catch (System.Exception ex)
             {
                 // set exception message
-                return Request.CreateResponse(HttpStatusCode.OK, new GroupDocs.Signature.MVC.Products.Common.Resources.Resources().GenerateException(ex));
+                return Request.CreateResponse(HttpStatusCode.OK, new Common.Resources.Resources().GenerateException(ex));
             }
         }
 
@@ -536,7 +544,7 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Controllers
             catch (System.Exception ex)
             {
                 // set exception message
-                return Request.CreateResponse(HttpStatusCode.OK, new GroupDocs.Signature.MVC.Products.Common.Resources.Resources().GenerateException(ex));
+                return Request.CreateResponse(HttpStatusCode.OK, new Common.Resources.Resources().GenerateException(ex));
             }
         }
 
@@ -600,7 +608,7 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Controllers
             catch (System.Exception ex)
             {
                 // set exception message
-                return Request.CreateResponse(HttpStatusCode.OK, new GroupDocs.Signature.MVC.Products.Common.Resources.Resources().GenerateException(ex));
+                return Request.CreateResponse(HttpStatusCode.OK, new Common.Resources.Resources().GenerateException(ex));
             }
         }
 
@@ -654,7 +662,7 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Controllers
             catch (System.Exception ex)
             {
                 // set exception message
-                return Request.CreateResponse(HttpStatusCode.OK, new GroupDocs.Signature.MVC.Products.Common.Resources.Resources().GenerateException(ex));
+                return Request.CreateResponse(HttpStatusCode.OK, new Common.Resources.Resources().GenerateException(ex));
             }
         }
 
@@ -731,7 +739,7 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Controllers
                 string imagePath = Path.Combine(DirectoryUtils.DataDirectory.ImageDirectory.Path, imageName);
                 if (System.IO.File.Exists(imagePath))
                 {
-                    imageName = Path.GetFileName(GroupDocs.Signature.MVC.Products.Common.Resources.Resources.GetFreeFileName(DirectoryUtils.DataDirectory.ImageDirectory.Path, imageName));
+                    imageName = Path.GetFileName(Common.Resources.Resources.GetFreeFileName(DirectoryUtils.DataDirectory.ImageDirectory.Path, imageName));
                     imagePath = Path.Combine(DirectoryUtils.DataDirectory.ImageDirectory.Path, imageName);
                 }
                 System.IO.File.WriteAllBytes(imagePath, Convert.FromBase64String(encodedImage));
@@ -742,7 +750,7 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Controllers
             catch (System.Exception ex)
             {
                 // set exception message
-                return Request.CreateResponse(HttpStatusCode.OK, new GroupDocs.Signature.MVC.Products.Common.Resources.Resources().GenerateException(ex));
+                return Request.CreateResponse(HttpStatusCode.OK, new Common.Resources.Resources().GenerateException(ex));
             }
         }
 
@@ -791,7 +799,7 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Controllers
             catch (System.Exception ex)
             {
                 // set exception message
-                return Request.CreateResponse(HttpStatusCode.OK, new GroupDocs.Signature.MVC.Products.Common.Resources.Resources().GenerateException(ex));
+                return Request.CreateResponse(HttpStatusCode.OK, new Common.Resources.Resources().GenerateException(ex));
             }
         }
 
@@ -912,7 +920,7 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Controllers
             catch (System.Exception ex)
             {
                 // set exception message
-                return Request.CreateResponse(HttpStatusCode.OK, new GroupDocs.Signature.MVC.Products.Common.Resources.Resources().GenerateException(ex));
+                return Request.CreateResponse(HttpStatusCode.OK, new Common.Resources.Resources().GenerateException(ex));
             }
         }
 
@@ -1011,7 +1019,7 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Controllers
             catch (System.Exception ex)
             {
                 // set exception message
-                return Request.CreateResponse(HttpStatusCode.OK, new GroupDocs.Signature.MVC.Products.Common.Resources.Resources().GenerateException(ex));
+                return Request.CreateResponse(HttpStatusCode.OK, new Common.Resources.Resources().GenerateException(ex));
             }
         }
 
