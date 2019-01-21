@@ -19,7 +19,6 @@ Thanks to powerful and flexible [GroupDocs.Signature for .NET](https://products.
 ## Demo Video
 https://www.youtube.com/watch?v=pA98PkdXcN8
 
-
 ## Features
 - Clean, modern and intuitive design
 - Easily switchable colour theme (create your own colour theme in 5 minutes)
