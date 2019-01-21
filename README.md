@@ -1,5 +1,5 @@
 # GroupDocs.Signature for .NET MVC Example
-###### version 1.17.0
+###### version 1.18.0
 
 [![Build status](https://ci.appveyor.com/api/projects/status/r64t7oi4a00qy6n4/branch/master?svg=true)](https://ci.appveyor.com/project/egorovpavel/groupdocs-signature-for-net-mvc/branch/master)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/bff0b328abbc4b62a7c80177d81b47cc)](https://www.codacy.com/app/GroupDocs/GroupDocs.Signature-for-.NET-MVC?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=groupdocs-signature/GroupDocs.Signature-for-.NET-MVC&amp;utm_campaign=Badge_Grade)
@@ -15,7 +15,6 @@ Welcome our new and improved GroupDocs.Signature UI - native, simple, fully conf
 Thanks to powerful and flexible [GroupDocs.Signature for .NET](https://products.groupdocs.com/Signature/NET) API, over 50 document formats are supported.
 
 **Note** Without a license application will run in trial mode, purchase [GroupDocs.Signature for .NET license](https://purchase.groupdocs.com/order-online-step-1-of-8.aspx) or request [GroupDocs.Signature for .NET temporary license](https://purchase.groupdocs.com/temporary-license).
-
 
 ## Demo Video
 https://www.youtube.com/watch?v=pA98PkdXcN8
