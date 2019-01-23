@@ -74,7 +74,3 @@ signature:
   barCodeSignature: true
   # Enable/disable Stamp signature
   stampSignature: true
-  # Enable/disable original document downloading
-  downloadOriginal: true
-  # Enable/disable signed document downloading
-  downloadSigned: true

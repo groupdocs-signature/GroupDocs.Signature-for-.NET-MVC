@@ -12,9 +12,8 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Config
     public class SignatureConfiguration
     {
         public string FilesDirectory = "DocumentSamples/Signature";
-        public string OutputDirectory = "";
         public string DefaultDocument = "";
-        public string DataDirectory = "";
+        public string DataDirectory = "";        
         public int PreloadPageCount = 0;
         public bool isTextSignature = true;
         public bool isImageSignature = true;
@@ -22,8 +21,7 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Config
         public bool isQrCodeSignature = true;
         public bool isBarCodeSignature = true;
         public bool isStampSignature = true;
-        public bool isDownloadOriginal = true;
-        public bool isDownloadSigned = true;      
+        private string TempFilesDirectory = "";
 
         /// <summary>
         /// Get signature configuration section from the Web.config
@@ -42,18 +40,15 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Config
                 {
                     Directory.CreateDirectory(FilesDirectory);
                 }
-            }
-            OutputDirectory = valuesGetter.GetStringPropertyValue("outputDirectory", OutputDirectory);
-            DataDirectory = valuesGetter.GetStringPropertyValue("dataDirectory", DataDirectory);
+            }          
+            DataDirectory = valuesGetter.GetStringPropertyValue("dataDirectory", DataDirectory);            
             DefaultDocument = valuesGetter.GetStringPropertyValue("defaultDocument", DefaultDocument);
             isTextSignature = valuesGetter.GetBooleanPropertyValue("textSignature", isTextSignature);
             isImageSignature = valuesGetter.GetBooleanPropertyValue("imageSignature", isImageSignature);
             isDigitalSignature = valuesGetter.GetBooleanPropertyValue("digitalSignature", isDigitalSignature);
             isQrCodeSignature = valuesGetter.GetBooleanPropertyValue("qrCodeSignature", isQrCodeSignature);
             isBarCodeSignature = valuesGetter.GetBooleanPropertyValue("barCodeSignature", isBarCodeSignature);
-            isStampSignature = valuesGetter.GetBooleanPropertyValue("stampSignature", isStampSignature);
-            isDownloadOriginal = valuesGetter.GetBooleanPropertyValue("downloadOriginal", isDownloadOriginal);
-            isDownloadSigned = valuesGetter.GetBooleanPropertyValue("downloadSigned", isDownloadSigned);            
+            isStampSignature = valuesGetter.GetBooleanPropertyValue("stampSignature", isStampSignature);             
             PreloadPageCount = valuesGetter.GetIntegerPropertyValue("preloadPageCount", PreloadPageCount);
         }
 
@@ -63,6 +58,16 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Config
                 && path.IndexOfAny(System.IO.Path.GetInvalidPathChars().ToArray()) == -1
                 && Path.IsPathRooted(path)
                 && !Path.GetPathRoot(path).Equals(Path.DirectorySeparatorChar.ToString(), StringComparison.Ordinal);
+        }
+
+        public void SetTempFilesDirectory(string tempFilesDirectory)
+        {
+            this.TempFilesDirectory = tempFilesDirectory;
+        }
+
+        public string GetTempFilesDirectory()
+        {
+            return this.TempFilesDirectory;
         }
     }
 }

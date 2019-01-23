@@ -7,9 +7,9 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Util.Directory
     /// </summary>
     public class DirectoryUtils
     {
-        public FilesDirectoryUtils FilesDirectory;
-        public OutputDirectoryUtils OutputDirectory;
-        public DataDirectoryUtils DataDirectory;
+        private FilesDirectoryUtils FilesDirectory;
+        private DataDirectoryUtils DataDirectory;
+        private TempDirectoryUtils TempFolder;
 
         /// <summary>
         /// Constructor
@@ -18,8 +18,37 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Util.Directory
         public DirectoryUtils(SignatureConfiguration signatureConfiguration)
         {
             FilesDirectory = new FilesDirectoryUtils(signatureConfiguration);
-            OutputDirectory = new OutputDirectoryUtils(signatureConfiguration);
             DataDirectory = new DataDirectoryUtils(signatureConfiguration);
+            TempFolder = new TempDirectoryUtils(signatureConfiguration);
+        }
+
+        public FilesDirectoryUtils GetFilesDirectory()
+        {
+            return FilesDirectory;
+        }
+
+        public void SetFilesDirectory(FilesDirectoryUtils filesDirectory) {
+            this.FilesDirectory = filesDirectory;
+        }
+
+        public DataDirectoryUtils GetDataDirectory()
+        {
+            return DataDirectory;
+        }
+
+        public void SetDataDirectory(DataDirectoryUtils dataDirectory)
+        {
+            this.DataDirectory = dataDirectory;
+        }
+
+        public TempDirectoryUtils GetTempFolder()
+        {
+            return TempFolder;
+        }
+
+        public void SetTempFolder(TempDirectoryUtils tempFolder)
+        {
+            this.TempFolder = tempFolder;
         }
     }
 }
