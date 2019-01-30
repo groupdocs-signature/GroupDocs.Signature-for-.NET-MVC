@@ -4,6 +4,10 @@ using System.Web.Routing;
 using MvcContrib.TestHelper;
 using Huygens;
 using System;
+using GroupDocs.Signature.MVC.Products.Signature.Entity.Web;
+using System.Text;
+using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace GroupDocs.Signature.MVC.Test
 {
@@ -45,6 +49,6 @@ namespace GroupDocs.Signature.MVC.Test
         public void ViewMapControllerTest()
         {
             "~/signature".Route().ShouldMapTo<SignatureController>(x => x.Index());
-        }
+        }        
     }
 }
