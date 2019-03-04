@@ -50,10 +50,7 @@ common:
 signature:
   # Files directory path
   # Absolute path to files directory
-  filesDirectory: 'DocumentSamples/Signature'
-  # Output directory path
-  # Absolute path to signed files directory
-  outputDirectory: ''
+  filesDirectory: 'DocumentSamples/Signature' 
   # Default document
   # Absolute or relative path to default document
   defaultDocument: ''

@@ -11,8 +11,7 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Config
     /// </summary>
     public class SignatureConfiguration
     {
-        public string FilesDirectory = "DocumentSamples/Signature";
-        public string OutputDirectory = "";
+        public string FilesDirectory = "DocumentSamples/Signature";       
         public string DefaultDocument = "";
         public string DataDirectory = "";
         public int PreloadPageCount = 0;
@@ -23,7 +22,8 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Config
         public bool isBarCodeSignature = true;
         public bool isStampSignature = true;
         public bool isDownloadOriginal = true;
-        public bool isDownloadSigned = true;      
+        public bool isDownloadSigned = true;
+        private string TempFilesDirectory = "";
 
         /// <summary>
         /// Get signature configuration section from the Web.config
@@ -42,8 +42,7 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Config
                 {
                     Directory.CreateDirectory(FilesDirectory);
                 }
-            }
-            OutputDirectory = valuesGetter.GetStringPropertyValue("outputDirectory", OutputDirectory);
+            }           
             DataDirectory = valuesGetter.GetStringPropertyValue("dataDirectory", DataDirectory);
             DefaultDocument = valuesGetter.GetStringPropertyValue("defaultDocument", DefaultDocument);
             isTextSignature = valuesGetter.GetBooleanPropertyValue("textSignature", isTextSignature);
@@ -63,6 +62,16 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Config
                 && path.IndexOfAny(System.IO.Path.GetInvalidPathChars().ToArray()) == -1
                 && Path.IsPathRooted(path)
                 && !Path.GetPathRoot(path).Equals(Path.DirectorySeparatorChar.ToString(), StringComparison.Ordinal);
+        }
+
+        public void SetTempFilesDirectory(string tempFilesDirectory)
+        {
+            this.TempFilesDirectory = tempFilesDirectory;
+        }
+
+        public string GetTempFilesDirectory()
+        {
+            return this.TempFilesDirectory;
         }
     }
 }

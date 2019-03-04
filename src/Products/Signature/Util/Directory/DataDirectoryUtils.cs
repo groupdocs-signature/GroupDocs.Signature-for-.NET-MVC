@@ -2,6 +2,7 @@
 using GroupDocs.Signature.MVC.Products.Signature.Config;
 using GroupDocs.Signature.MVC.Products.Signature.Entity.Directory;
 using System;
+using System.IO;
 
 namespace GroupDocs.Signature.MVC.Products.Signature.Util.Directory
 {
@@ -15,6 +16,7 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Util.Directory
 
         public CertificateDataDirectoryEntity CertificateDirectory { get; set; }
         public ImageDataDirectoryEntity ImageDirectory { get; set; }
+        public UploadedImageDataDirectoryEntity UploadedImageDirectory { get; set; }
         public StampDataDirectoryEntity StampDirectory { get; set; }
         public QrCodeDataDirectoryEntity QrCodeDirectory { get; set; }
         public BarcodeDataDirectoryEntity BarcodeDirectory { get; set; }
@@ -38,6 +40,7 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Util.Directory
             BarcodeDirectory = new BarcodeDataDirectoryEntity(signatureConfiguration);
             CertificateDirectory = new CertificateDataDirectoryEntity(signatureConfiguration);
             ImageDirectory = new ImageDataDirectoryEntity(signatureConfiguration);
+            UploadedImageDirectory = new UploadedImageDataDirectoryEntity(signatureConfiguration);
             StampDirectory = new StampDataDirectoryEntity(signatureConfiguration);
             QrCodeDirectory = new QrCodeDataDirectoryEntity(signatureConfiguration);
             BarcodeDirectory = new BarcodeDataDirectoryEntity(signatureConfiguration);
@@ -57,7 +60,9 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Util.Directory
             System.IO.Directory.CreateDirectory(BarcodeDirectory.PreviewPath);
 
             System.IO.Directory.CreateDirectory(TextDirectory.XmlPath);
-            System.IO.Directory.CreateDirectory(TextDirectory.PreviewPath);
+
+            string uploadedImagePath = ImageDirectory.Path + ImageDirectory.GetUploadedImageFolder();
+            System.IO.Directory.CreateDirectory(uploadedImagePath);
         }
 
         /// <summary>

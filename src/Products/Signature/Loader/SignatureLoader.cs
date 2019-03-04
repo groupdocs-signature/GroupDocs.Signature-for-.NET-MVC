@@ -1,8 +1,10 @@
 ﻿using GroupDocs.Signature.MVC.Products.Common.Util.Comparator;
 using GroupDocs.Signature.MVC.Products.Signature.Entity.Web;
+using GroupDocs.Signature.MVC.Products.Signature.Entity.Xml;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Xml.Serialization;
 
 namespace GroupDocs.Signature.MVC.Products.Signature.Loader
 {
@@ -31,12 +33,12 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Loader
         /// <returns>List[SignatureFileDescriptionEntity]</returns>
         public List<SignatureFileDescriptionEntity> LoadImageSignatures()
         {
-            string[] files = Directory.GetFiles(CurrentPath, "*.*", SearchOption.AllDirectories);
+            string[] files = Directory.GetFiles(CurrentPath, "*.*", SearchOption.TopDirectoryOnly);
             List<string> allFiles = new List<string>(files);
             List<SignatureFileDescriptionEntity> fileList = new List<SignatureFileDescriptionEntity>();
             try
             {
-                allFiles.Sort(new FileTypeComparator());
+                allFiles.Sort(new FileDateComparator());
                 allFiles.Sort(new FileNameComparator());
 
                 foreach (string file in allFiles)
@@ -80,12 +82,12 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Loader
         public List<SignatureFileDescriptionEntity> LoadFiles()
         {
             List<string> allFiles = new List<string>(Directory.GetFiles(CurrentPath));
-            allFiles.AddRange(Directory.GetDirectories(CurrentPath));           
+            allFiles.AddRange(Directory.GetDirectories(CurrentPath));
             List<SignatureFileDescriptionEntity> fileList = new List<SignatureFileDescriptionEntity>();
             try
-            {                
+            {
                 allFiles.Sort(new FileNameComparator());
-                allFiles.Sort(new FileTypeComparator());
+                allFiles.Sort(new FileDateComparator());
 
                 foreach (string file in allFiles)
                 {
@@ -126,19 +128,19 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Loader
         /// <param name="previewFolder">string</param>
         /// <param name="xmlFolder">string</param>
         /// <returns>List[SignatureFileDescriptionEntity]</returns>
-        public List<SignatureFileDescriptionEntity> LoadStampSignatures(string previewFolder, string xmlFolder)
+        public List<SignatureFileDescriptionEntity> LoadStampSignatures(string previewFolder, string xmlFolder, string signatureType)
         {
             string imagesPath = CurrentPath + previewFolder;
             string xmlPath = CurrentPath + xmlFolder;
-            string[] imageFiles = Directory.GetFiles(imagesPath);
+            string[] imageFiles = Directory.GetFiles(imagesPath, "*.png", SearchOption.TopDirectoryOnly);
             // get all files from the directory
             List<SignatureFileDescriptionEntity> fileList = new List<SignatureFileDescriptionEntity>();
             try
             {
                 if (imageFiles != null && imageFiles.Length > 0)
-                {                    
+                {
                     string[] xmlFiles = Directory.GetFiles(xmlPath);
-                    List<String> filesList = new List<string>();                  
+                    List<String> filesList = new List<string>();
                     foreach (string imageFile in imageFiles)
                     {
                         foreach (string xmlFile in xmlFiles)
@@ -150,7 +152,7 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Loader
                         }
                     }
                     // sort list of files and folders
-                    filesList.Sort(new FileTypeComparator());
+                    filesList.Sort(new FileDateComparator());
                     filesList.Sort(new FileNameComparator());
                     foreach (string file in filesList)
                     {
@@ -174,10 +176,57 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Loader
                             byte[] imageArray = File.ReadAllBytes(file);
                             string base64ImageRepresentation = Convert.ToBase64String(imageArray);
                             fileDescription.image = base64ImageRepresentation;
+                            if ("qrCode".Equals(signatureType) || "barCode".Equals(signatureType))
+                            {
+                                // get stream of the xml file
+                                StreamReader xmlStream = new StreamReader(Path.Combine(xmlPath, Path.GetFileNameWithoutExtension(file) + ".xml"));
+                                // initiate serializer
+                                XmlSerializer serializer = null;
+                                serializer = new XmlSerializer(typeof(OpticalXmlEntity));
+                                // deserialize XML into the object
+                                OpticalXmlEntity xmlData = (OpticalXmlEntity)serializer.Deserialize(xmlStream);
+                                fileDescription.text = xmlData.text;
+                                xmlStream.Close();
+                                xmlStream.Dispose();
+                            }
                             // add object to array list
                             fileList.Add(fileDescription);
                         }
                     }
+                }
+                return fileList;
+            }
+            catch (System.Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public List<SignatureFileDescriptionEntity> loadTextSignatures(string xmlFolder)
+        {
+            try
+            {
+                string xmlPath = CurrentPath + xmlFolder;
+                string[] xmlFiles = Directory.GetFiles(xmlPath);
+                // get all files from the directory
+                List<SignatureFileDescriptionEntity> fileList = new List<SignatureFileDescriptionEntity>();
+                foreach (string xmlFile in xmlFiles)
+                {
+                    SignatureFileDescriptionEntity fileDescription = new SignatureFileDescriptionEntity();
+                    fileDescription.guid = xmlFile;
+                    fileDescription.name = Path.GetFileName(xmlFile);
+                    // get stream of the xml file
+                    StreamReader xmlStream = new StreamReader(xmlFile);
+                    // initiate serializer
+                    XmlSerializer serializer = new XmlSerializer(typeof(TextXmlEntity));
+                    // deserialize XML into the object
+                    TextXmlEntity xmlData = (TextXmlEntity)serializer.Deserialize(xmlStream);
+                    fileDescription.text = xmlData.text;
+                    fileDescription.fontColor = xmlData.fontColor;
+                    xmlStream.Close();
+                    xmlStream.Dispose();
+                    // add object to array list
+                    fileList.Add(fileDescription);
                 }
                 return fileList;
             }

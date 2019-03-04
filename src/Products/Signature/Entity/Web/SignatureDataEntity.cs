@@ -1,4 +1,6 @@
 ﻿
+using GroupDocs.Signature.Domain;
+
 namespace GroupDocs.Signature.MVC.Products.Signature.Entity.Web
 {
     /// <summary>
@@ -11,8 +13,7 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Entity.Web
         public string Address{ get; set; }
         public string Date{ get; set; }
         public string SignaturePassword{ get; set; }
-        public string SignatureComment{ get; set; }
-        public string DocumentType{ get; set; }
+        public string SignatureComment{ get; set; }       
         public string SignatureGuid{ get; set; }
         public string SignatureType{ get; set; }
         public int PageNumber{ get; set; }
@@ -20,7 +21,29 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Entity.Web
         public int Top{ get; set; }
         public int ImageWidth{ get; set; }
         public int ImageHeight{ get; set; }
-        public int Angle{ get; set; }
-        public bool isDeleted{ get; set; }
+        public int Angle{ get; set; }       
+
+        private HorizontalAlignment horizontalAlignment = HorizontalAlignment.None;
+        private VerticalAlignment verticalAlignment = VerticalAlignment.None;
+
+        public HorizontalAlignment getHorizontalAlignment()
+        {
+            return horizontalAlignment;
+        }
+
+        public void setHorizontalAlignment(HorizontalAlignment horizontalAlignment)
+        {
+            this.horizontalAlignment = horizontalAlignment;
+        }
+
+        public VerticalAlignment getVerticalAlignment()
+        {
+            return verticalAlignment;
+        }
+
+        public void setVerticalAlignment(VerticalAlignment verticalAlignment)
+        {
+            this.verticalAlignment = verticalAlignment;
+        }
     }
 }
