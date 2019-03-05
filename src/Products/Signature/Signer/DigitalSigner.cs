@@ -30,18 +30,10 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Signer
         public override SignOptions SignPdf()
         {
             // setup digital signature options
-            PdfSignDigitalOptions pdfSignOptions = new PdfSignDigitalOptions(signatureData.SignatureGuid);
-            pdfSignOptions.Reason = signatureData.Reason;
-            pdfSignOptions.Contact = signatureData.Contact;
-            pdfSignOptions.Location = signatureData.Address;
-            pdfSignOptions.Password = password;
-            pdfSignOptions.SignAllPages = true;
-            if (!String.IsNullOrEmpty(signatureData.Date))
-            {
-                pdfSignOptions.Signature.SignTime = DateTime.ParseExact(signatureData.Date, "dd-MM-yyyy", CultureInfo.InvariantCulture);
-            }
-            return pdfSignOptions;
-        }
+            PdfSignDigitalOptions signOptions = new PdfSignDigitalOptions(signatureData.SignatureGuid);
+            SetOptions(signOptions);           
+            return signOptions;
+        }       
 
         /// <summary>
         /// Add digital signature options for image file
@@ -59,15 +51,9 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Signer
         /// <returns>SignOptions</returns>
         public override SignOptions SignWord()
         {
-            WordsSignDigitalOptions wordsSignOptions = new WordsSignDigitalOptions(signatureData.SignatureGuid);
-            wordsSignOptions.Signature.Comments = signatureData.SignatureComment;
-            if (!String.IsNullOrEmpty(signatureData.Date))
-            {
-                wordsSignOptions.Signature.SignTime = DateTime.ParseExact(signatureData.Date, "dd-MM-yyyy", CultureInfo.InvariantCulture);
-            }
-            wordsSignOptions.Password = password;
-            wordsSignOptions.SignAllPages = true;
-            return wordsSignOptions;
+            WordsSignDigitalOptions signOptions = new WordsSignDigitalOptions(signatureData.SignatureGuid);
+            SetOptions(signOptions);
+            return signOptions;
         }
 
         /// <summary>
@@ -76,15 +62,9 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Signer
         /// <returns>SignOptions</returns>
         public override SignOptions SignCells()
         {
-            CellsSignDigitalOptions cellsSignOptions = new CellsSignDigitalOptions(signatureData.SignatureGuid);
-            cellsSignOptions.Signature.Comments = signatureData.SignatureComment;
-            if (!String.IsNullOrEmpty(signatureData.Date))
-            {
-                cellsSignOptions.Signature.SignTime = DateTime.ParseExact(signatureData.Date, "dd-MM-yyyy", CultureInfo.InvariantCulture);
-            }
-            cellsSignOptions.Password = password;
-            cellsSignOptions.SignAllPages = true;
-            return cellsSignOptions;
+            CellsSignDigitalOptions signOptions = new CellsSignDigitalOptions(signatureData.SignatureGuid);
+            SetOptions(signOptions);
+            return signOptions;
         }
 
         /// <summary>
@@ -95,6 +75,26 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Signer
         public override SignOptions SignSlides()
         {
             throw new NotSupportedException("This file type is not supported");
+        }
+
+        private void SetOptions(dynamic signOptions)
+        {
+            if (signOptions is PdfSignDigitalOptions)
+            {
+                signOptions.Reason = signatureData.Reason;
+                signOptions.Contact = signatureData.Contact;
+                signOptions.Location = signatureData.Address;
+            }
+            else
+            {
+                signOptions.Signature.Comments = signatureData.SignatureComment;
+            }
+            if (!String.IsNullOrEmpty(signatureData.Date))
+            {
+                signOptions.Signature.SignTime = DateTime.ParseExact(signatureData.Date, "dd-MM-yyyy", CultureInfo.InvariantCulture);
+            }
+            signOptions.Password = password;
+            signOptions.SignAllPages = true;
         }
     }
 }

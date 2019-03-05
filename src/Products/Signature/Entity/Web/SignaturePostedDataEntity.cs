@@ -13,5 +13,6 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Entity.Web
         public string image { get; set; }
         public StampXmlEntity[] stampData { get; set; }
         public XmlEntity properties { get; set; }
+        public string documentType { get; set; }      
     }
 }
