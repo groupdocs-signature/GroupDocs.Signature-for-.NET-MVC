@@ -11,7 +11,7 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Config
     /// </summary>
     public class SignatureConfiguration
     {
-        public string FilesDirectory = "DocumentSamples/Signature";       
+        public string FilesDirectory = "DocumentSamples/Signature";
         public string DefaultDocument = "";
         public string DataDirectory = "";
         public int PreloadPageCount = 0;
@@ -21,6 +21,7 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Config
         public bool isQrCodeSignature = true;
         public bool isBarCodeSignature = true;
         public bool isStampSignature = true;
+        public bool isHandSignature = true;
         public bool isDownloadOriginal = true;
         public bool isDownloadSigned = true;
         private string TempFilesDirectory = "";
@@ -42,7 +43,7 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Config
                 {
                     Directory.CreateDirectory(FilesDirectory);
                 }
-            }           
+            }
             DataDirectory = valuesGetter.GetStringPropertyValue("dataDirectory", DataDirectory);
             DefaultDocument = valuesGetter.GetStringPropertyValue("defaultDocument", DefaultDocument);
             isTextSignature = valuesGetter.GetBooleanPropertyValue("textSignature", isTextSignature);
@@ -51,8 +52,9 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Config
             isQrCodeSignature = valuesGetter.GetBooleanPropertyValue("qrCodeSignature", isQrCodeSignature);
             isBarCodeSignature = valuesGetter.GetBooleanPropertyValue("barCodeSignature", isBarCodeSignature);
             isStampSignature = valuesGetter.GetBooleanPropertyValue("stampSignature", isStampSignature);
+            isHandSignature = valuesGetter.GetBooleanPropertyValue("handSignature", isHandSignature);
             isDownloadOriginal = valuesGetter.GetBooleanPropertyValue("downloadOriginal", isDownloadOriginal);
-            isDownloadSigned = valuesGetter.GetBooleanPropertyValue("downloadSigned", isDownloadSigned);            
+            isDownloadSigned = valuesGetter.GetBooleanPropertyValue("downloadSigned", isDownloadSigned);
             PreloadPageCount = valuesGetter.GetIntegerPropertyValue("preloadPageCount", PreloadPageCount);
         }
 
