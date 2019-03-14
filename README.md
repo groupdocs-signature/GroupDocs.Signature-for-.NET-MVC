@@ -18,7 +18,7 @@ Thanks to powerful and flexible [GroupDocs.Signature for .NET](https://products.
 **Note** Without a license application will run in trial mode, purchase [GroupDocs.Signature for .NET license](https://purchase.groupdocs.com/order-online-step-1-of-8.aspx) or request [GroupDocs.Signature for .NET temporary license](https://purchase.groupdocs.com/temporary-license).
 
 ## Demo Video
-https://www.youtube.com/watch?v=pA98PkdXcN8
+https://youtu.be/MakhcqlV7iQ
 
 ## Features
 - Clean, modern and intuitive design
