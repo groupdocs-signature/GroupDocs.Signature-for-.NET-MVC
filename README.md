@@ -1,3 +1,4 @@
+![GroupDocs.Signature](https://raw.githubusercontent.com/groupdocs-signature/groupdocs-signature.github.io/master/resources/image/banner.png "GroupDocs.Signature")
 # GroupDocs.Signature for .NET MVC Example
 ###### version 1.18.0
 
