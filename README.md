@@ -12,7 +12,7 @@
 
 ## Digitally Sign documents with .NET API
 
-GroupDocs.Signature for Java allows you to **add a digital signature to PDF, DOCX, PPT, XLS** and over 90 formats with no external dependencies. Using powerful and flexible API you can easily add handwritten, barcode, QR code, Image and stamp signatures to document. 
+GroupDocs.Signature for .NET allows you to **add a digital signature to PDF, DOCX, PPT, XLS** and over 90 formats with no external dependencies. Using powerful and flexible API you can easily add handwritten, barcode, QR code, Image and stamp signatures to document. 
 
 This web application demonstrates all GroupDocs.Signature features with simple modern UI which can be used as standalone or be integrated into your project.
 
@@ -20,7 +20,7 @@ This web application demonstrates all GroupDocs.Signature features with simple m
 
 ## Demo Video
 <p align="center">
-  <a title="Document signature for JAVA " href="https://youtu.be/MakhcqlV7iQ"> 
+  <a title="Document signature for .NET " href="https://youtu.be/MakhcqlV7iQ"> 
     <img src="https://raw.githubusercontent.com/groupdocs-signature/groupdocs-signature.github.io/master/resources/image/document-signature-demo.gif" width="100%" style="width:100%;">
   </a>
 </p>
