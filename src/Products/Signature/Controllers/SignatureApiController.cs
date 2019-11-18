@@ -24,6 +24,7 @@ using System.Web.Http;
 using System.Web.Http.Cors;
 using System.Xml;
 using System.Xml.Serialization;
+using GroupDocs.Signature.MVC.Products.Signature.Config;
 
 namespace GroupDocs.Signature.MVC.Products.Signature.Controllers
 {
@@ -62,6 +63,16 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Controllers
             }
         }
 
+        /// <summary>
+        /// Load Signature configuration
+        /// </summary>
+        /// <returns>Signature configuration</returns>
+        [HttpGet]
+        [Route("loadConfig")]
+        public SignatureConfiguration LoadConfig()
+        {
+            return GlobalConfiguration.Signature;
+        }
 
         /// <summary>
         /// Get all files and directories from storage

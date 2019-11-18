@@ -9,7 +9,7 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Config
     /// <summary>
     /// SignatureConfiguration
     /// </summary>
-    public class SignatureConfiguration
+    public class SignatureConfiguration : CommonConfiguration
     {
         public string FilesDirectory = "DocumentSamples/Signature";
         public string DefaultDocument = "";
