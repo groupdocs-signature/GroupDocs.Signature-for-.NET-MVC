@@ -15,15 +15,15 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Config
         public string DefaultDocument = "";
         public string DataDirectory = "";
         public int PreloadPageCount = 0;
-        public bool isTextSignature = true;
-        public bool isImageSignature = true;
-        public bool isDigitalSignature = true;
-        public bool isQrCodeSignature = true;
-        public bool isBarCodeSignature = true;
-        public bool isStampSignature = true;
-        public bool isHandSignature = true;
-        public bool isDownloadOriginal = true;
-        public bool isDownloadSigned = true;
+        public bool textSignature = true;
+        public bool imageSignature = true;
+        public bool digitalSignature = true;
+        public bool qrCodeSignature = true;
+        public bool barCodeSignature = true;
+        public bool stampSignature = true;
+        public bool handSignature = true;
+        public bool downloadOriginal = true;
+        public bool downloadSigned = true;
         private string TempFilesDirectory = "";
 
         /// <summary>
@@ -46,15 +46,15 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Config
             }
             DataDirectory = valuesGetter.GetStringPropertyValue("dataDirectory", DataDirectory);
             DefaultDocument = valuesGetter.GetStringPropertyValue("defaultDocument", DefaultDocument);
-            isTextSignature = valuesGetter.GetBooleanPropertyValue("textSignature", isTextSignature);
-            isImageSignature = valuesGetter.GetBooleanPropertyValue("imageSignature", isImageSignature);
-            isDigitalSignature = valuesGetter.GetBooleanPropertyValue("digitalSignature", isDigitalSignature);
-            isQrCodeSignature = valuesGetter.GetBooleanPropertyValue("qrCodeSignature", isQrCodeSignature);
-            isBarCodeSignature = valuesGetter.GetBooleanPropertyValue("barCodeSignature", isBarCodeSignature);
-            isStampSignature = valuesGetter.GetBooleanPropertyValue("stampSignature", isStampSignature);
-            isHandSignature = valuesGetter.GetBooleanPropertyValue("handSignature", isHandSignature);
-            isDownloadOriginal = valuesGetter.GetBooleanPropertyValue("downloadOriginal", isDownloadOriginal);
-            isDownloadSigned = valuesGetter.GetBooleanPropertyValue("downloadSigned", isDownloadSigned);
+            textSignature = valuesGetter.GetBooleanPropertyValue("textSignature", textSignature);
+            imageSignature = valuesGetter.GetBooleanPropertyValue("imageSignature", imageSignature);
+            digitalSignature = valuesGetter.GetBooleanPropertyValue("digitalSignature", digitalSignature);
+            qrCodeSignature = valuesGetter.GetBooleanPropertyValue("qrCodeSignature", qrCodeSignature);
+            barCodeSignature = valuesGetter.GetBooleanPropertyValue("barCodeSignature", barCodeSignature);
+            stampSignature = valuesGetter.GetBooleanPropertyValue("stampSignature", stampSignature);
+            handSignature = valuesGetter.GetBooleanPropertyValue("handSignature", handSignature);
+            downloadOriginal = valuesGetter.GetBooleanPropertyValue("downloadOriginal", downloadOriginal);
+            downloadSigned = valuesGetter.GetBooleanPropertyValue("downloadSigned", downloadSigned);
             PreloadPageCount = valuesGetter.GetIntegerPropertyValue("preloadPageCount", PreloadPageCount);
         }
 

@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { SignatureModule } from "@groupdocs.examples.angular/signatur";
+import { SignatureModule } from "@groupdocs.examples.angular/signature";
 
 @NgModule({
   declarations: [AppComponent],
