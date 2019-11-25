@@ -14,14 +14,5 @@
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/groupdocs-signature/GroupDocs.Signature-for-.NET-MVC/issues"
-  },
-  "homepage": "https://github.com/groupdocs-signature/GroupDocs.Signature-for-.NET-MVC#readme",
-  "dependencies": {
-    "@groupdocs.examples.jquery/common": "^0.16.0",
-    "@groupdocs.examples.jquery/signature": "^0.16.0",
-    "@groupdocs.examples.jquery/viewer": "^0.16.0"
-  },
-  "devDependencies": {
-    "gulp": "^4.0.2"
   }
 }
