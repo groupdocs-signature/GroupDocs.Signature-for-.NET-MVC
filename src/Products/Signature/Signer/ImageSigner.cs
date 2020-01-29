@@ -83,10 +83,10 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Signer
 
         private void SetOptions(SignImageOptions signOptions)
         {
-            signOptions.Left = signatureData.Left;
-            signOptions.Top = signatureData.Top;
-            signOptions.Width = signatureData.ImageWidth;
-            signOptions.Height = signatureData.ImageHeight;
+            signOptions.Left = Convert.ToInt32(signatureData.Left);
+            signOptions.Top = Convert.ToInt32(signatureData.Top);
+            signOptions.Width = Convert.ToInt32(signatureData.ImageWidth);
+            signOptions.Height = Convert.ToInt32(signatureData.ImageHeight);
             signOptions.DocumentPageNumber = signatureData.PageNumber;
             signOptions.RotationAngle = signatureData.Angle;
         }

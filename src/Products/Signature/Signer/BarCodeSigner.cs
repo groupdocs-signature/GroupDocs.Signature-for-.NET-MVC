@@ -91,10 +91,10 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Signer
             signOptions.EncodeType = BarcodeTypes.Code39Standard;
             signOptions.HorizontalAlignment = signatureData.getHorizontalAlignment();
             signOptions.VerticalAlignment = signatureData.getVerticalAlignment();
-            signOptions.Width = signatureData.ImageWidth;
-            signOptions.Height = signatureData.ImageHeight;
-            signOptions.Top = signatureData.Top;
-            signOptions.Left = signatureData.Left;
+            signOptions.Width = Convert.ToInt32(signatureData.ImageWidth);
+            signOptions.Height = Convert.ToInt32(signatureData.ImageHeight);
+            signOptions.Top = Convert.ToInt32(signatureData.Top);
+            signOptions.Left = Convert.ToInt32(signatureData.Left);
             signOptions.DocumentPageNumber = signatureData.PageNumber;
             if (signatureData.Angle != 0)
             {

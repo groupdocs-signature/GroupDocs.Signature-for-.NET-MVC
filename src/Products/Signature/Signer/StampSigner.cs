@@ -32,10 +32,10 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Signer
         {
             // setup options
             PdfStampSignOptions pdfSignOptions = new PdfStampSignOptions();
-            pdfSignOptions.Height = signatureData.ImageHeight - 20;
-            pdfSignOptions.Width = signatureData.ImageWidth - 20;
-            pdfSignOptions.Top = signatureData.Top;
-            pdfSignOptions.Left = signatureData.Left;
+            pdfSignOptions.Height = Convert.ToInt32(signatureData.ImageHeight - 20);
+            pdfSignOptions.Width = Convert.ToInt32(signatureData.ImageWidth - 20);
+            pdfSignOptions.Top = Convert.ToInt32(signatureData.Top);
+            pdfSignOptions.Left = Convert.ToInt32(signatureData.Left);
             pdfSignOptions.DocumentPageNumber = signatureData.PageNumber;
             pdfSignOptions.RotationAngle = signatureData.Angle;
             pdfSignOptions.BackgroundColor = getColor(stampData[stampData.Length - 1].backgroundColor);
@@ -84,10 +84,10 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Signer
         {
             // setup options
             ImagesStampSignOptions imageSignOptions = new ImagesStampSignOptions();
-            imageSignOptions.Height = signatureData.ImageHeight - 20;
-            imageSignOptions.Width = signatureData.ImageWidth - 20;
-            imageSignOptions.Top = signatureData.Top;
-            imageSignOptions.Left = signatureData.Left;
+            imageSignOptions.Height = Convert.ToInt32(signatureData.ImageHeight - 20);
+            imageSignOptions.Width = Convert.ToInt32(signatureData.ImageWidth - 20);
+            imageSignOptions.Top = Convert.ToInt32(signatureData.Top);
+            imageSignOptions.Left = Convert.ToInt32(signatureData.Left);
             imageSignOptions.DocumentPageNumber = signatureData.PageNumber;
             imageSignOptions.RotationAngle = signatureData.Angle;
             imageSignOptions.BackgroundColor = getColor(stampData[stampData.Length - 1].backgroundColor);
@@ -135,10 +135,10 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Signer
         {
             // setup options
             WordsStampSignOptions wordsSignOptions = new WordsStampSignOptions();
-            wordsSignOptions.Height = signatureData.ImageHeight - 20;
-            wordsSignOptions.Width = signatureData.ImageWidth - 20;
-            wordsSignOptions.Top = signatureData.Top;
-            wordsSignOptions.Left = signatureData.Left;
+            wordsSignOptions.Height = Convert.ToInt32(signatureData.ImageHeight - 20);
+            wordsSignOptions.Width = Convert.ToInt32(signatureData.ImageWidth - 20);
+            wordsSignOptions.Top = Convert.ToInt32(signatureData.Top);
+            wordsSignOptions.Left = Convert.ToInt32(signatureData.Left);
             wordsSignOptions.DocumentPageNumber = signatureData.PageNumber;
             wordsSignOptions.RotationAngle = signatureData.Angle;
             wordsSignOptions.BackgroundColor = getColor(stampData[stampData.Length - 1].backgroundColor);
@@ -185,10 +185,10 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Signer
         {
             // setup options
             CellsStampSignOptions cellsSignOptions = new CellsStampSignOptions();
-            cellsSignOptions.Height = signatureData.ImageHeight - 20;
-            cellsSignOptions.Width = signatureData.ImageWidth - 20;
-            cellsSignOptions.Top = signatureData.Top;
-            cellsSignOptions.Left = signatureData.Left;
+            cellsSignOptions.Height = Convert.ToInt32(signatureData.ImageHeight - 20);
+            cellsSignOptions.Width = Convert.ToInt32(signatureData.ImageWidth - 20);
+            cellsSignOptions.Top = Convert.ToInt32(signatureData.Top);
+            cellsSignOptions.Left = Convert.ToInt32(signatureData.Left);
             cellsSignOptions.DocumentPageNumber = signatureData.PageNumber;
             cellsSignOptions.RotationAngle = signatureData.Angle;
             cellsSignOptions.BackgroundColor = getColor(stampData[stampData.Length - 1].backgroundColor);
@@ -236,10 +236,10 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Signer
         {
             // setup options
             SlidesStampSignOptions slidesSignOptions = new SlidesStampSignOptions();
-            slidesSignOptions.Height = signatureData.ImageHeight - 20;
-            slidesSignOptions.Width = signatureData.ImageWidth - 20;
-            slidesSignOptions.Top = signatureData.Top;
-            slidesSignOptions.Left = signatureData.Left;
+            slidesSignOptions.Height = Convert.ToInt32(signatureData.ImageHeight - 20);
+            slidesSignOptions.Width = Convert.ToInt32(signatureData.ImageWidth - 20);
+            slidesSignOptions.Top = Convert.ToInt32(signatureData.Top);
+            slidesSignOptions.Left = Convert.ToInt32(signatureData.Left);
             slidesSignOptions.DocumentPageNumber = signatureData.PageNumber;
             slidesSignOptions.RotationAngle = signatureData.Angle;
             slidesSignOptions.BackgroundColor = getColor(stampData[stampData.Length - 1].backgroundColor);
@@ -324,7 +324,7 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Signer
             }
             else
             {
-                reductionSize = stampData.height / signatureData.ImageHeight;
+                reductionSize = Convert.ToInt32(stampData.height / signatureData.ImageHeight);
             }
             return reductionSize;
         }

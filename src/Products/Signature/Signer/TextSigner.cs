@@ -89,10 +89,10 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Signer
 
         private void SetOptions(dynamic signOptions)
         {
-            signOptions.Left = signatureData.Left;
-            signOptions.Top = signatureData.Top;
-            signOptions.Height = signatureData.ImageHeight;
-            signOptions.Width = signatureData.ImageWidth;
+            signOptions.Left = Convert.ToInt32(signatureData.Left);
+            signOptions.Top = Convert.ToInt32(signatureData.Top);
+            signOptions.Height = Convert.ToInt32(signatureData.ImageHeight);
+            signOptions.Width = Convert.ToInt32(signatureData.ImageWidth);
             signOptions.RotationAngle = signatureData.Angle;
             signOptions.DocumentPageNumber = signatureData.PageNumber;
             signOptions.VerticalAlignment = VerticalAlignment.None;
