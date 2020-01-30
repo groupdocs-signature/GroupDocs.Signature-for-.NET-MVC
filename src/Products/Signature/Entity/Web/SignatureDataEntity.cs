@@ -17,10 +17,10 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Entity.Web
         public string SignatureGuid{ get; set; }
         public string SignatureType{ get; set; }
         public int PageNumber{ get; set; }
-        public int Left{ get; set; }
-        public int Top{ get; set; }
-        public int ImageWidth{ get; set; }
-        public int ImageHeight{ get; set; }
+        public double Left{ get; set; }
+        public double Top { get; set; }
+        public double ImageWidth { get; set; }
+        public double ImageHeight { get; set; }
         public int Angle{ get; set; }       
 
         private HorizontalAlignment horizontalAlignment = HorizontalAlignment.None;
