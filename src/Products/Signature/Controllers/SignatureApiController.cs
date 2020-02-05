@@ -179,35 +179,37 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Controllers
                 // get/set parameters
                 string documentGuid = postedData.guid;
                 password = postedData.password;
-                DocumentDescription documentDescription;
-                // get document info container
-                documentDescription = SignatureHandler.GetDocumentDescription(documentGuid, password);
-                List<SignatureLoadedPageEntity> pagesDescription = new List<SignatureLoadedPageEntity>();
-                for (int i = 1; i <= documentDescription.PageCount; i++)
-                {
-                    //initiate custom Document description object
-                    SignatureLoadedPageEntity description = new SignatureLoadedPageEntity();
-                    // get current page size
-                    Size pageSize = SignatureHandler.GetDocumentPageSize(documentGuid, i, password, (double)0, (double)0, null);
-                    // set current page info for result
-                    description.height = pageSize.Height;
-                    description.width = pageSize.Width;
-                    description.number = i;
-                    if (GlobalConfiguration.Signature.PreloadPageCount == 0)
-                    {
-                        byte[] pageBytes = SignatureHandler.GetPageImage(documentGuid, i, password, null, 100);
-                        string encodedImage = Convert.ToBase64String(pageBytes);
-                        pageBytes = null;
-                        description.SetData(encodedImage);
-                    }
-                    pagesDescription.Add(description);
-                }
-
                 LoadDocumentEntity loadDocumentEntity = new LoadDocumentEntity();
-                loadDocumentEntity.SetGuid(documentGuid);
-                foreach (SignatureLoadedPageEntity pageDescription in pagesDescription)
+                DocumentDescription documentDescription;
+                using (FileStream stream = File.Open(documentGuid, FileMode.Open, FileAccess.ReadWrite, FileShare.ReadWrite))
                 {
-                    loadDocumentEntity.SetPages(pageDescription);
+                    // get document info container
+                    documentDescription = SignatureHandler.GetDocumentDescription(stream, password);
+                    List<SignatureLoadedPageEntity> pagesDescription = new List<SignatureLoadedPageEntity>();
+                    for (int i = 1; i <= documentDescription.PageCount; i++)
+                    {
+                        //initiate custom Document description object
+                        SignatureLoadedPageEntity description = new SignatureLoadedPageEntity();
+                        // get current page size
+                        Size pageSize = SignatureHandler.GetDocumentPageSize(stream, i, password, (double)0, (double)0, null);
+                        // set current page info for result
+                        description.height = pageSize.Height;
+                        description.width = pageSize.Width;
+                        description.number = i;
+                        if (GlobalConfiguration.Signature.PreloadPageCount == 0)
+                        {
+                            byte[] pageBytes = SignatureHandler.GetPageImage(stream, i, password, null, 100);
+                            string encodedImage = Convert.ToBase64String(pageBytes);
+                            pageBytes = null;
+                            description.SetData(encodedImage);
+                        }
+                        pagesDescription.Add(description);
+                    }                  
+                    loadDocumentEntity.SetGuid(documentGuid);
+                    foreach (SignatureLoadedPageEntity pageDescription in pagesDescription)
+                    {
+                        loadDocumentEntity.SetPages(pageDescription);
+                    }
                 }
                 // return document description
                 return Request.CreateResponse(HttpStatusCode.OK, loadDocumentEntity);
@@ -914,6 +916,13 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Controllers
                 }
                 // return loaded page object
                 SignedDocumentEntity signedDocument = SignDocument(documentGuid, password, signsCollection);
+                //File.Delete(documentGuid);
+                //using (var fileStream = File.Create(documentGuid))
+                //{
+                //    result.Seek(0, SeekOrigin.Begin);
+                //    result.CopyTo(fileStream);
+                //}
+                signedDocument.guid = documentGuid;
                 // return loaded page object
                 return Request.CreateResponse(HttpStatusCode.OK, signedDocument);
             }
@@ -1097,7 +1106,7 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Controllers
             SaveOptions saveOptions = new SaveOptions();
             saveOptions.OutputType = OutputType.String;
             saveOptions.OutputFileName = Path.GetFileName(documentGuid);
-            saveOptions.OverwriteExistingFiles = false;
+            saveOptions.OverwriteExistingFiles = true;
 
             // set password
             LoadOptions loadOptions = new LoadOptions();
@@ -1128,14 +1137,15 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Controllers
             SaveOptions saveOptions = new SaveOptions();
             saveOptions.OutputType = OutputType.Stream;
             saveOptions.OutputFileName = Path.GetFileName(documentGuid);
-
+            saveOptions.OverwriteExistingFiles = true;
             // set password
             LoadOptions loadOptions = new LoadOptions();
             if (!String.IsNullOrEmpty(password))
             {
                 loadOptions.Password = password;
             }
-            Stream result = SignatureHandler.Sign<Stream>(documentGuid, signsCollection, loadOptions, saveOptions);
+            Stream result = SignatureHandler.Sign<Stream>(documentGuid, signsCollection, loadOptions, saveOptions);          
+           
             return result;
         }
 
