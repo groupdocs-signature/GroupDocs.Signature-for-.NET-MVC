@@ -175,39 +175,40 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Controllers
             string password = "";
             try
             {
-
                 // get/set parameters
                 string documentGuid = postedData.guid;
                 password = postedData.password;
-                DocumentDescription documentDescription;
-                // get document info container
-                documentDescription = SignatureHandler.GetDocumentDescription(documentGuid, password);
-                List<SignatureLoadedPageEntity> pagesDescription = new List<SignatureLoadedPageEntity>();
-                for (int i = 1; i <= documentDescription.PageCount; i++)
-                {
-                    //initiate custom Document description object
-                    SignatureLoadedPageEntity description = new SignatureLoadedPageEntity();
-                    // get current page size
-                    Size pageSize = SignatureHandler.GetDocumentPageSize(documentGuid, i, password, (double)0, (double)0, null);
-                    // set current page info for result
-                    description.height = pageSize.Height;
-                    description.width = pageSize.Width;
-                    description.number = i;
-                    if (GlobalConfiguration.Signature.PreloadPageCount == 0)
-                    {
-                        byte[] pageBytes = SignatureHandler.GetPageImage(documentGuid, i, password, null, 100);
-                        string encodedImage = Convert.ToBase64String(pageBytes);
-                        pageBytes = null;
-                        description.SetData(encodedImage);
-                    }
-                    pagesDescription.Add(description);
-                }
-
                 LoadDocumentEntity loadDocumentEntity = new LoadDocumentEntity();
-                loadDocumentEntity.SetGuid(documentGuid);
-                foreach (SignatureLoadedPageEntity pageDescription in pagesDescription)
+                DocumentDescription documentDescription;
+                using (FileStream stream = File.Open(documentGuid, FileMode.Open, FileAccess.ReadWrite, FileShare.ReadWrite))
                 {
-                    loadDocumentEntity.SetPages(pageDescription);
+                    // get document info container
+                    documentDescription = SignatureHandler.GetDocumentDescription(stream, password);
+                    List<SignatureLoadedPageEntity> pagesDescription = new List<SignatureLoadedPageEntity>();
+                    for (int i = 1; i <= documentDescription.PageCount; i++)
+                    {
+                        //initiate custom Document description object
+                        SignatureLoadedPageEntity description = new SignatureLoadedPageEntity();
+                        // get current page size
+                        Size pageSize = SignatureHandler.GetDocumentPageSize(stream, i, password, (double)0, (double)0, null);
+                        // set current page info for result
+                        description.height = pageSize.Height;
+                        description.width = pageSize.Width;
+                        description.number = i;
+                        if (GlobalConfiguration.Signature.PreloadPageCount == 0)
+                        {
+                            byte[] pageBytes = SignatureHandler.GetPageImage(stream, i, password, null, 100);
+                            string encodedImage = Convert.ToBase64String(pageBytes);
+                            pageBytes = null;
+                            description.SetData(encodedImage);
+                        }
+                        pagesDescription.Add(description);
+                    }
+                    loadDocumentEntity.SetGuid(documentGuid);
+                    foreach (SignatureLoadedPageEntity pageDescription in pagesDescription)
+                    {
+                        loadDocumentEntity.SetPages(pageDescription);
+                    }
                 }
                 // return document description
                 return Request.CreateResponse(HttpStatusCode.OK, loadDocumentEntity);
@@ -215,7 +216,8 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Controllers
             catch (System.Exception ex)
             {
                 // TODO: this should be changed on special catch for PasswordProtectedException when it will be added in the library
-                if (ex.Message == "Invalid password") {
+                if (ex.Message == "Invalid password")
+                {
                     return Request.CreateResponse(HttpStatusCode.Forbidden, new Common.Resources.Resources().GenerateException(ex, password));
                 }
 
