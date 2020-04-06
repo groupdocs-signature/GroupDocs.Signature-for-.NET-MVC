@@ -68,7 +68,5 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Signer
         /// <returns>SignOptions</returns>
         /// <throws>Not supported exception</throws>
         public abstract SignOptions SignSlides();
-
-
     }
 }

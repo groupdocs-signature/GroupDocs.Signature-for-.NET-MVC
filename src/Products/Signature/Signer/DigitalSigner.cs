@@ -30,10 +30,10 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Signer
         public override SignOptions SignPdf()
         {
             // setup digital signature options
-            PdfSignDigitalOptions signOptions = new PdfSignDigitalOptions(signatureData.SignatureGuid);
-            SetOptions(signOptions);           
+            DigitalSignOptions signOptions = new DigitalSignOptions(signatureData.SignatureGuid);
+            SetOptions(signOptions);
             return signOptions;
-        }       
+        }
 
         /// <summary>
         /// Add digital signature options for image file
@@ -51,7 +51,7 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Signer
         /// <returns>SignOptions</returns>
         public override SignOptions SignWord()
         {
-            WordsSignDigitalOptions signOptions = new WordsSignDigitalOptions(signatureData.SignatureGuid);
+            DigitalSignOptions signOptions = new DigitalSignOptions(signatureData.SignatureGuid);
             SetOptions(signOptions);
             return signOptions;
         }
@@ -62,7 +62,7 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Signer
         /// <returns>SignOptions</returns>
         public override SignOptions SignCells()
         {
-            CellsSignDigitalOptions signOptions = new CellsSignDigitalOptions(signatureData.SignatureGuid);
+            DigitalSignOptions signOptions = new DigitalSignOptions(signatureData.SignatureGuid);
             SetOptions(signOptions);
             return signOptions;
         }
@@ -77,9 +77,9 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Signer
             throw new NotSupportedException("This file type is not supported");
         }
 
-        private void SetOptions(dynamic signOptions)
+        private void SetOptions(DigitalSignOptions signOptions)
         {
-            if (signOptions is PdfSignDigitalOptions)
+            if (signOptions is DigitalSignOptions)
             {
                 signOptions.Reason = signatureData.Reason;
                 signOptions.Contact = signatureData.Contact;
@@ -94,7 +94,7 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Signer
                 signOptions.Signature.SignTime = DateTime.ParseExact(signatureData.Date, "dd-MM-yyyy", CultureInfo.InvariantCulture);
             }
             signOptions.Password = password;
-            signOptions.SignAllPages = true;
+            signOptions.AllPages = true;
         }
     }
 }

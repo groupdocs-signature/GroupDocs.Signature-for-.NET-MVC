@@ -30,12 +30,12 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Signer
         /// <returns>SignOptions</returns>
         public override SignOptions SignPdf()
         {
-            PdfSignTextOptions signOptions = new PdfSignTextOptions(textData.text);
+            TextSignOptions signOptions = new TextSignOptions(textData.text);
             SetOptions(signOptions);
             // specify extended appearance options
-            PdfTextAnnotationAppearance appearance = new PdfTextAnnotationAppearance();          
+            Options.Appearances.PdfTextAnnotationAppearance appearance = new Options.Appearances.PdfTextAnnotationAppearance();
             signOptions.Appearance = appearance;
-            signOptions.SignatureImplementation = PdfTextSignatureImplementation.Image;
+            signOptions.SignatureImplementation = TextSignatureImplementation.Image;
             return signOptions;
         }
 
@@ -45,9 +45,9 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Signer
         /// <returns>SignOptions</returns>
         public override SignOptions SignImage()
         {
-            ImagesSignTextOptions signOptions = new ImagesSignTextOptions(textData.text);
+            TextSignOptions signOptions = new TextSignOptions(textData.text);
             SetOptions(signOptions);
-            signOptions.SignatureImplementation = ImagesTextSignatureImplementation.TextAsImage;
+            signOptions.SignatureImplementation = TextSignatureImplementation.Image;
             return signOptions;
         }
 
@@ -57,9 +57,9 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Signer
         /// <returns>SignOptions</returns>
         public override SignOptions SignWord()
         {
-            WordsSignTextOptions signOptions = new WordsSignTextOptions(textData.text);
+            TextSignOptions signOptions = new TextSignOptions(textData.text);
             SetOptions(signOptions);
-            signOptions.SignatureImplementation = WordsTextSignatureImplementation.TextAsImage;
+            signOptions.SignatureImplementation = TextSignatureImplementation.Image;
             return signOptions;
         }
 
@@ -69,9 +69,9 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Signer
         /// <returns>SignOptions</returns>
         public override SignOptions SignCells()
         {
-            CellsSignTextOptions signOptions = new CellsSignTextOptions(textData.text);
+            TextSignOptions signOptions = new TextSignOptions(textData.text);
             SetOptions(signOptions);
-            signOptions.SignatureImplementation = CellsTextSignatureImplementation.TextAsImage;
+            signOptions.SignatureImplementation = TextSignatureImplementation.Image;
             return signOptions;
         }
 
@@ -81,32 +81,32 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Signer
         /// <returns>SignOptions</returns>
         public override SignOptions SignSlides()
         {
-            SlidesSignTextOptions signOptions = new SlidesSignTextOptions(textData.text);
+            TextSignOptions signOptions = new TextSignOptions(textData.text);
             SetOptions(signOptions);
-            signOptions.SignatureImplementation = SlidesTextSignatureImplementation.TextAsImage;
+            signOptions.SignatureImplementation = TextSignatureImplementation.Image;
             return signOptions;
         }
 
-        private void SetOptions(dynamic signOptions)
+        private void SetOptions(TextSignOptions signOptions)
         {
             signOptions.Left = Convert.ToInt32(signatureData.Left);
             signOptions.Top = Convert.ToInt32(signatureData.Top);
             signOptions.Height = Convert.ToInt32(signatureData.ImageHeight);
             signOptions.Width = Convert.ToInt32(signatureData.ImageWidth);
             signOptions.RotationAngle = signatureData.Angle;
-            signOptions.DocumentPageNumber = signatureData.PageNumber;
+            signOptions.PageNumber = signatureData.PageNumber;
             signOptions.VerticalAlignment = VerticalAlignment.None;
             signOptions.HorizontalAlignment = HorizontalAlignment.None;
             // setup colors settings
-            signOptions.BackgroundColor = getColor(textData.backgroundColor);
+            signOptions.Background.Color = getColor(textData.backgroundColor);
             // setup text color
-            signOptions.ForeColor = getColor(textData.fontColor);           
+            signOptions.ForeColor = getColor(textData.fontColor);
             // setup Font options
             signOptions.Font.Bold = textData.bold;
             signOptions.Font.Italic = textData.italic;
             signOptions.Font.Underline = textData.underline;
-            signOptions.Font.FontFamily = textData.font;           
-            signOptions.Font.FontSize = textData.fontSize;
+            signOptions.Font.FamilyName = textData.font;
+            signOptions.Font.Size = textData.fontSize;
         }
     }
 }

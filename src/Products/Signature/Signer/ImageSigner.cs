@@ -28,7 +28,7 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Signer
         {
             // setup options
             // setup image signature options
-            PdfSignImageOptions signOptions = new PdfSignImageOptions(signatureData.SignatureGuid);
+            ImageSignOptions signOptions = new ImageSignOptions(signatureData.SignatureGuid);
             SetOptions(signOptions);
             return signOptions;
         }
@@ -40,7 +40,7 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Signer
         public override SignOptions SignImage()
         {
             // setup image signature options with relative path - image file stores in config.ImagesPath folder
-            ImagesSignImageOptions signOptions = new ImagesSignImageOptions(signatureData.SignatureGuid);
+            ImageSignOptions signOptions = new ImageSignOptions(signatureData.SignatureGuid);
             SetOptions(signOptions);
             return signOptions;
         }
@@ -52,7 +52,7 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Signer
         public override SignOptions SignWord()
         {
             // setup image signature options with relative path - image file stores in config.ImagesPath folder
-            WordsSignImageOptions signOptions = new WordsSignImageOptions(signatureData.SignatureGuid);
+            ImageSignOptions signOptions = new ImageSignOptions(signatureData.SignatureGuid);
             SetOptions(signOptions);
             return signOptions;
         }
@@ -64,7 +64,7 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Signer
         public override SignOptions SignCells()
         {
             // setup image signature options
-            CellsSignImageOptions signOptions = new CellsSignImageOptions(signatureData.SignatureGuid);
+            ImageSignOptions signOptions = new ImageSignOptions(signatureData.SignatureGuid);
             SetOptions(signOptions);
             return signOptions;
         }
@@ -76,18 +76,18 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Signer
         public override SignOptions SignSlides()
         {
             // setup image signature options with relative path - image file stores in config.ImagesPath folder
-            SlidesSignImageOptions signOptions = new SlidesSignImageOptions(signatureData.SignatureGuid);
-            SetOptions(signOptions);            
+            ImageSignOptions signOptions = new ImageSignOptions(signatureData.SignatureGuid);
+            SetOptions(signOptions);
             return signOptions;
         }
 
-        private void SetOptions(SignImageOptions signOptions)
+        private void SetOptions(ImageSignOptions signOptions)
         {
             signOptions.Left = Convert.ToInt32(signatureData.Left);
             signOptions.Top = Convert.ToInt32(signatureData.Top);
             signOptions.Width = Convert.ToInt32(signatureData.ImageWidth);
             signOptions.Height = Convert.ToInt32(signatureData.ImageHeight);
-            signOptions.DocumentPageNumber = signatureData.PageNumber;
+            signOptions.PageNumber = signatureData.PageNumber;
             signOptions.RotationAngle = signatureData.Angle;
         }
     }
