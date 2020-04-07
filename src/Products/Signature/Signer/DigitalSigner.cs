@@ -29,10 +29,7 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Signer
         /// <returns>SignOptions</returns>
         public override SignOptions SignPdf()
         {
-            // setup digital signature options
-            DigitalSignOptions signOptions = new DigitalSignOptions(signatureData.SignatureGuid);
-            SetOptions(signOptions);
-            return signOptions;
+            return SignWord();
         }
 
         /// <summary>
@@ -62,9 +59,7 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Signer
         /// <returns>SignOptions</returns>
         public override SignOptions SignCells()
         {
-            DigitalSignOptions signOptions = new DigitalSignOptions(signatureData.SignatureGuid);
-            SetOptions(signOptions);
-            return signOptions;
+            return SignWord();
         }
 
         /// <summary>

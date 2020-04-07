@@ -242,6 +242,7 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Controllers
                         // set current page info for result
                         loadedPage.height = documentInfo.Pages[pageNumber - 1].Height;
                         loadedPage.width = documentInfo.Pages[pageNumber - 1].Width;
+                        loadedPage.number = pageNumber;
                     }
                 }
 
@@ -1198,11 +1199,13 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Controllers
             try
             {
                 // get stream of the xml file
-                StreamReader xmlStream = new StreamReader(Path.Combine(xmlPath, xmlFileName + ".xml"));
-                // initiate serializer
-                XmlSerializer serializer = new XmlSerializer(typeof(T));
-                // deserialize XML into the object
-                returnObject = (T)serializer.Deserialize(xmlStream);
+                using (StreamReader xmlStream = new StreamReader(Path.Combine(xmlPath, xmlFileName + ".xml")))
+                {
+                    // initiate serializer
+                    XmlSerializer serializer = new XmlSerializer(typeof(T));
+                    // deserialize XML into the object
+                    returnObject = (T)serializer.Deserialize(xmlStream);
+                }
             }
             catch (System.Exception ex)
             {

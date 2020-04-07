@@ -30,10 +30,7 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Signer
         /// <returns>SignOptions</returns>
         public override SignOptions SignPdf()
         {
-            // setup options
-            QrCodeSignOptions signOptions = new QrCodeSignOptions(qrCodeData.text);
-            SetOptions(signOptions);
-            return signOptions;
+            return SignWord();
         }
 
         /// <summary>
@@ -42,10 +39,7 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Signer
         /// <returns>SignOptions</returns>
         public override SignOptions SignImage()
         {
-            // setup options
-            QrCodeSignOptions signOptions = new QrCodeSignOptions(qrCodeData.text);
-            SetOptions(signOptions);
-            return signOptions;
+            return SignWord();
         }
 
         /// <summary>
@@ -66,10 +60,7 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Signer
         /// <returns>SignOptions</returns>
         public override SignOptions SignCells()
         {
-            // setup options
-            QrCodeSignOptions signOptions = new QrCodeSignOptions(qrCodeData.text);
-            SetOptions(signOptions);
-            return signOptions;
+            return SignWord();
         }
 
         /// <summary>
@@ -78,10 +69,7 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Signer
         /// <returns>SignOptions</returns>
         public override SignOptions SignSlides()
         {
-            // setup options
-            QrCodeSignOptions signOptions = new QrCodeSignOptions(qrCodeData.text);
-            SetOptions(signOptions);
-            return signOptions;
+            return SignWord();
         }
 
         private void SetOptions(QrCodeSignOptions signOptions)

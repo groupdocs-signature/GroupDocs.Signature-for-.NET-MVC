@@ -26,11 +26,7 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Signer
         /// <returns>SignOptions</returns>
         public override SignOptions SignPdf()
         {
-            // setup options
-            // setup image signature options
-            ImageSignOptions signOptions = new ImageSignOptions(signatureData.SignatureGuid);
-            SetOptions(signOptions);
-            return signOptions;
+            return SignWord();
         }
 
         /// <summary>
@@ -39,10 +35,7 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Signer
         /// <returns>SignOptions</returns>
         public override SignOptions SignImage()
         {
-            // setup image signature options with relative path - image file stores in config.ImagesPath folder
-            ImageSignOptions signOptions = new ImageSignOptions(signatureData.SignatureGuid);
-            SetOptions(signOptions);
-            return signOptions;
+            return SignWord();
         }
 
         /// <summary>
@@ -51,7 +44,6 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Signer
         /// <returns>SignOptions</returns>
         public override SignOptions SignWord()
         {
-            // setup image signature options with relative path - image file stores in config.ImagesPath folder
             ImageSignOptions signOptions = new ImageSignOptions(signatureData.SignatureGuid);
             SetOptions(signOptions);
             return signOptions;
@@ -63,10 +55,7 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Signer
         /// <returns>SignOptions</returns>
         public override SignOptions SignCells()
         {
-            // setup image signature options
-            ImageSignOptions signOptions = new ImageSignOptions(signatureData.SignatureGuid);
-            SetOptions(signOptions);
-            return signOptions;
+            return SignWord();
         }
 
         /// <summary>
@@ -75,10 +64,7 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Signer
         /// <returns>SignOptions</returns>
         public override SignOptions SignSlides()
         {
-            // setup image signature options with relative path - image file stores in config.ImagesPath folder
-            ImageSignOptions signOptions = new ImageSignOptions(signatureData.SignatureGuid);
-            SetOptions(signOptions);
-            return signOptions;
+            return SignWord();
         }
 
         private void SetOptions(ImageSignOptions signOptions)

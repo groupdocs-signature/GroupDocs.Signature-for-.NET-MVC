@@ -45,10 +45,7 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Signer
         /// <returns>SignOptions</returns>
         public override SignOptions SignImage()
         {
-            TextSignOptions signOptions = new TextSignOptions(textData.text);
-            SetOptions(signOptions);
-            signOptions.SignatureImplementation = TextSignatureImplementation.Image;
-            return signOptions;
+            return SignWord();
         }
 
         /// <summary>
@@ -69,10 +66,7 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Signer
         /// <returns>SignOptions</returns>
         public override SignOptions SignCells()
         {
-            TextSignOptions signOptions = new TextSignOptions(textData.text);
-            SetOptions(signOptions);
-            signOptions.SignatureImplementation = TextSignatureImplementation.Image;
-            return signOptions;
+            return SignWord();
         }
 
         /// <summary>
@@ -81,10 +75,7 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Signer
         /// <returns>SignOptions</returns>
         public override SignOptions SignSlides()
         {
-            TextSignOptions signOptions = new TextSignOptions(textData.text);
-            SetOptions(signOptions);
-            signOptions.SignatureImplementation = TextSignatureImplementation.Image;
-            return signOptions;
+            return SignWord();
         }
 
         private void SetOptions(TextSignOptions signOptions)

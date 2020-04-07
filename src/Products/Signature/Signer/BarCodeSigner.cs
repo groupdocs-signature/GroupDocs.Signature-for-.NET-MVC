@@ -30,13 +30,8 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Signer
         /// <returns>SignOptions</returns>
         public override SignOptions SignPdf()
         {
-            // setup options
-            BarcodeSignOptions signOptions = new BarcodeSignOptions(QrCodeData.text);
-            SetOptions(signOptions);
-            return signOptions;
+            return SignWord();
         }
-
-
 
         /// <summary>
         /// Add signature data for image file
@@ -44,10 +39,7 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Signer
         /// <returns>SignOptions</returns>
         public override SignOptions SignImage()
         {
-            // setup options
-            BarcodeSignOptions signOptions = new BarcodeSignOptions(QrCodeData.text);
-            SetOptions(signOptions);
-            return signOptions;
+            return SignWord();
         }
 
         /// <summary>
@@ -68,10 +60,7 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Signer
         /// <returns>SignOptions</returns>
         public override SignOptions SignCells()
         {
-            // setup options
-            BarcodeSignOptions signOptions = new BarcodeSignOptions(QrCodeData.text);
-            SetOptions(signOptions);
-            return signOptions;
+            return SignWord();
         }
 
         /// <summary>
@@ -80,10 +69,7 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Signer
         /// <returns>SignOptions</returns>
         public override SignOptions SignSlides()
         {
-            // setup options
-            BarcodeSignOptions signOptions = new BarcodeSignOptions(QrCodeData.text);
-            SetOptions(signOptions);
-            return signOptions;
+            return SignWord();
         }
 
         private void SetOptions(BarcodeSignOptions signOptions)
