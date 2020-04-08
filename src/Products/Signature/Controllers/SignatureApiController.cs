@@ -33,7 +33,7 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Controllers
     public class SignatureApiController : ApiController
     {
         private static readonly Common.Config.GlobalConfiguration GlobalConfiguration = new Common.Config.GlobalConfiguration();
-        private readonly List<string> SupportedImageFormats = new List<string>() { ".bmp", ".jpeg", ".jpg", ".tiff", ".tif", ".png" };
+        private readonly List<string> SupportedImageFormats = new List<string> { ".bmp", ".jpeg", ".jpg", ".tiff", ".tif", ".png" };
         private readonly DirectoryUtils DirectoryUtils = new DirectoryUtils(GlobalConfiguration.Signature);
 
         /// <summary>
@@ -959,7 +959,7 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Controllers
         /// <param name="password">string</param>
         /// <param name="signaturesData">SignatureDataEntity</param>
         /// <param name="signsCollection">SignatureOptionsCollection</param>
-        private void SignDigital(string documentType, string password, SignatureDataEntity signaturesData, List<SignOptions> signsCollection)
+        private static void SignDigital(string documentType, string password, SignatureDataEntity signaturesData, List<SignOptions> signsCollection)
         {
             try
             {
@@ -979,7 +979,7 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Controllers
         /// <param name="documentType">string</param>
         /// <param name="signaturesData">SignatureDataEntity</param>
         /// <param name="signsCollection">SignatureOptionsCollection</param>
-        private void SignImage(string documentType, SignatureDataEntity signaturesData, List<SignOptions> signsCollection)
+        private static void SignImage(string documentType, SignatureDataEntity signaturesData, List<SignOptions> signsCollection)
         {
             try
             {
@@ -1090,7 +1090,7 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Controllers
         /// <param name="documentType">string</param>
         /// <param name="signsCollection">SignatureOptionsCollection</param>
         /// <param name="signer">SignatureSigner</param>
-        private void AddSignOptions(string documentType, List<SignOptions> signsCollection, BaseSigner signer)
+        private static void AddSignOptions(string documentType, List<SignOptions> signsCollection, BaseSigner signer)
         {
             switch (documentType)
             {
@@ -1119,7 +1119,7 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Controllers
         /// <param name="password">string</param>
         /// <param name="signsCollection">SignatureOptionsCollection</param>
         /// <returns></returns>
-        private SignedDocumentEntity SignDocument(string documentGuid, string password, List<SignOptions> signsCollection)
+        private static SignedDocumentEntity SignDocument(string documentGuid, string password, List<SignOptions> signsCollection)
         {
             // set save options
             SaveOptions saveOptions = new SaveOptions
@@ -1151,7 +1151,7 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Controllers
         /// <param name="password">string</param>
         /// <param name="signsCollection">SignatureOptionsCollection</param>
         /// <returns></returns>
-        private Stream SignDocumentStream(string documentGuid, string password, List<SignOptions> signsCollection)
+        private static Stream SignDocumentStream(string documentGuid, string password, List<SignOptions> signsCollection)
         {
             // set save options
             SaveOptions saveOptions = new SaveOptions();
