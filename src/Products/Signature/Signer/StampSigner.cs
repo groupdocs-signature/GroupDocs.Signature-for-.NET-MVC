@@ -32,12 +32,12 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Signer
         {
             // setup options
             StampSignOptions pdfSignOptions = new StampSignOptions();
-            pdfSignOptions.Height = Convert.ToInt32(signatureData.ImageHeight - 20);
-            pdfSignOptions.Width = Convert.ToInt32(signatureData.ImageWidth - 20);
-            pdfSignOptions.Top = Convert.ToInt32(signatureData.Top);
-            pdfSignOptions.Left = Convert.ToInt32(signatureData.Left);
-            pdfSignOptions.PageNumber = signatureData.PageNumber;
-            pdfSignOptions.RotationAngle = signatureData.Angle;
+            pdfSignOptions.Height = Convert.ToInt32(SignatureData.ImageHeight - 20);
+            pdfSignOptions.Width = Convert.ToInt32(SignatureData.ImageWidth - 20);
+            pdfSignOptions.Top = Convert.ToInt32(SignatureData.Top);
+            pdfSignOptions.Left = Convert.ToInt32(SignatureData.Left);
+            pdfSignOptions.PageNumber = SignatureData.PageNumber;
+            pdfSignOptions.RotationAngle = SignatureData.Angle;
             pdfSignOptions.Background.Color = getColor(stampData[stampData.Length - 1].backgroundColor);
             pdfSignOptions.BackgroundColorCropType = StampBackgroundCropType.OuterArea;
             // draw stamp lines
@@ -84,12 +84,12 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Signer
         {
             // setup options
             StampSignOptions imageSignOptions = new StampSignOptions();
-            imageSignOptions.Height = Convert.ToInt32(signatureData.ImageHeight - 20);
-            imageSignOptions.Width = Convert.ToInt32(signatureData.ImageWidth - 20);
-            imageSignOptions.Top = Convert.ToInt32(signatureData.Top);
-            imageSignOptions.Left = Convert.ToInt32(signatureData.Left);
-            imageSignOptions.PageNumber = signatureData.PageNumber;
-            imageSignOptions.RotationAngle = signatureData.Angle;
+            imageSignOptions.Height = Convert.ToInt32(SignatureData.ImageHeight - 20);
+            imageSignOptions.Width = Convert.ToInt32(SignatureData.ImageWidth - 20);
+            imageSignOptions.Top = Convert.ToInt32(SignatureData.Top);
+            imageSignOptions.Left = Convert.ToInt32(SignatureData.Left);
+            imageSignOptions.PageNumber = SignatureData.PageNumber;
+            imageSignOptions.RotationAngle = SignatureData.Angle;
             imageSignOptions.Background.Color = getColor(stampData[stampData.Length - 1].backgroundColor);
             imageSignOptions.BackgroundColorCropType = StampBackgroundCropType.OuterArea;
             // draw stamp lines
@@ -135,12 +135,12 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Signer
         {
             // setup options
             StampSignOptions wordsSignOptions = new StampSignOptions();
-            wordsSignOptions.Height = Convert.ToInt32(signatureData.ImageHeight - 20);
-            wordsSignOptions.Width = Convert.ToInt32(signatureData.ImageWidth - 20);
-            wordsSignOptions.Top = Convert.ToInt32(signatureData.Top);
-            wordsSignOptions.Left = Convert.ToInt32(signatureData.Left);
-            wordsSignOptions.PageNumber = signatureData.PageNumber;
-            wordsSignOptions.RotationAngle = signatureData.Angle;
+            wordsSignOptions.Height = Convert.ToInt32(SignatureData.ImageHeight - 20);
+            wordsSignOptions.Width = Convert.ToInt32(SignatureData.ImageWidth - 20);
+            wordsSignOptions.Top = Convert.ToInt32(SignatureData.Top);
+            wordsSignOptions.Left = Convert.ToInt32(SignatureData.Left);
+            wordsSignOptions.PageNumber = SignatureData.PageNumber;
+            wordsSignOptions.RotationAngle = SignatureData.Angle;
             wordsSignOptions.Background.Color = getColor(stampData[stampData.Length - 1].backgroundColor);
             wordsSignOptions.BackgroundColorCropType = StampBackgroundCropType.OuterArea;
             // draw stamp lines
@@ -185,12 +185,12 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Signer
         {
             // setup options
             StampSignOptions cellsSignOptions = new StampSignOptions();
-            cellsSignOptions.Height = Convert.ToInt32(signatureData.ImageHeight - 20);
-            cellsSignOptions.Width = Convert.ToInt32(signatureData.ImageWidth - 20);
-            cellsSignOptions.Top = Convert.ToInt32(signatureData.Top);
-            cellsSignOptions.Left = Convert.ToInt32(signatureData.Left);
-            cellsSignOptions.PageNumber = signatureData.PageNumber;
-            cellsSignOptions.RotationAngle = signatureData.Angle;
+            cellsSignOptions.Height = Convert.ToInt32(SignatureData.ImageHeight - 20);
+            cellsSignOptions.Width = Convert.ToInt32(SignatureData.ImageWidth - 20);
+            cellsSignOptions.Top = Convert.ToInt32(SignatureData.Top);
+            cellsSignOptions.Left = Convert.ToInt32(SignatureData.Left);
+            cellsSignOptions.PageNumber = SignatureData.PageNumber;
+            cellsSignOptions.RotationAngle = SignatureData.Angle;
             cellsSignOptions.Background.Color = getColor(stampData[stampData.Length - 1].backgroundColor);
             cellsSignOptions.BackgroundColorCropType = StampBackgroundCropType.OuterArea;
             // draw stamp lines
@@ -236,12 +236,12 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Signer
         {
             // setup options
             StampSignOptions slidesSignOptions = new StampSignOptions();
-            slidesSignOptions.Height = Convert.ToInt32(signatureData.ImageHeight - 20);
-            slidesSignOptions.Width = Convert.ToInt32(signatureData.ImageWidth - 20);
-            slidesSignOptions.Top = Convert.ToInt32(signatureData.Top);
-            slidesSignOptions.Left = Convert.ToInt32(signatureData.Left);
-            slidesSignOptions.PageNumber = signatureData.PageNumber;
-            slidesSignOptions.RotationAngle = signatureData.Angle;
+            slidesSignOptions.Height = Convert.ToInt32(SignatureData.ImageHeight - 20);
+            slidesSignOptions.Width = Convert.ToInt32(SignatureData.ImageWidth - 20);
+            slidesSignOptions.Top = Convert.ToInt32(SignatureData.Top);
+            slidesSignOptions.Left = Convert.ToInt32(SignatureData.Left);
+            slidesSignOptions.PageNumber = SignatureData.PageNumber;
+            slidesSignOptions.RotationAngle = SignatureData.Angle;
             slidesSignOptions.Background.Color = getColor(stampData[stampData.Length - 1].backgroundColor);
             slidesSignOptions.BackgroundColorCropType = StampBackgroundCropType.OuterArea;
             // draw stamp lines
@@ -314,17 +314,17 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Signer
         private int CalculateRedactionSize(StampXmlEntity stampData)
         {
             int reductionSize = 0;
-            if ((double)stampData.height / signatureData.ImageHeight > 1 && (double)stampData.height / signatureData.ImageHeight < 2)
+            if ((double)stampData.height / SignatureData.ImageHeight > 1 && (double)stampData.height / SignatureData.ImageHeight < 2)
             {
                 reductionSize = 2;
             }
-            else if (stampData.height / signatureData.ImageHeight == 0)
+            else if (stampData.height / SignatureData.ImageHeight == 0)
             {
                 reductionSize = 1;
             }
             else
             {
-                reductionSize = Convert.ToInt32(stampData.height / signatureData.ImageHeight);
+                reductionSize = Convert.ToInt32(stampData.height / SignatureData.ImageHeight);
             }
             return reductionSize;
         }

@@ -44,7 +44,7 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Signer
         /// <returns>SignOptions</returns>
         public override SignOptions SignWord()
         {
-            ImageSignOptions signOptions = new ImageSignOptions(signatureData.SignatureGuid);
+            ImageSignOptions signOptions = new ImageSignOptions(SignatureData.SignatureGuid);
             SetOptions(signOptions);
             return signOptions;
         }
@@ -67,14 +67,14 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Signer
             return SignWord();
         }
 
-        private void SetOptions(ImageSignOptions signOptions)
+        private static void SetOptions(ImageSignOptions signOptions)
         {
-            signOptions.Left = Convert.ToInt32(signatureData.Left);
-            signOptions.Top = Convert.ToInt32(signatureData.Top);
-            signOptions.Width = Convert.ToInt32(signatureData.ImageWidth);
-            signOptions.Height = Convert.ToInt32(signatureData.ImageHeight);
-            signOptions.PageNumber = signatureData.PageNumber;
-            signOptions.RotationAngle = signatureData.Angle;
+            signOptions.Left = Convert.ToInt32(SignatureData.Left);
+            signOptions.Top = Convert.ToInt32(SignatureData.Top);
+            signOptions.Width = Convert.ToInt32(SignatureData.ImageWidth);
+            signOptions.Height = Convert.ToInt32(SignatureData.ImageHeight);
+            signOptions.PageNumber = SignatureData.PageNumber;
+            signOptions.RotationAngle = SignatureData.Angle;
         }
     }
 }

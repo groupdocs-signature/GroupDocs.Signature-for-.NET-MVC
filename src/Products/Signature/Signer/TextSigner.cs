@@ -11,7 +11,7 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Signer
     /// </summary>
     public class TextSigner : BaseSigner
     {
-        private TextXmlEntity textData;
+        public static TextXmlEntity TextData { get; set; }
 
         /// <summary>
         /// Constructor
@@ -21,7 +21,7 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Signer
         public TextSigner(TextXmlEntity textData, SignatureDataEntity signatureData)
             : base(signatureData)
         {
-            this.textData = textData;
+            TextData = textData;
         }
 
         /// <summary>
@@ -30,7 +30,7 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Signer
         /// <returns>SignOptions</returns>
         public override SignOptions SignPdf()
         {
-            TextSignOptions signOptions = new TextSignOptions(textData.text);
+            TextSignOptions signOptions = new TextSignOptions(TextData.text);
             SetOptions(signOptions);
             // specify extended appearance options
             Options.Appearances.PdfTextAnnotationAppearance appearance = new Options.Appearances.PdfTextAnnotationAppearance();
@@ -54,7 +54,7 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Signer
         /// <returns>SignOptions</returns>
         public override SignOptions SignWord()
         {
-            TextSignOptions signOptions = new TextSignOptions(textData.text);
+            TextSignOptions signOptions = new TextSignOptions(TextData.text);
             SetOptions(signOptions);
             signOptions.SignatureImplementation = TextSignatureImplementation.Image;
             return signOptions;
@@ -78,26 +78,26 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Signer
             return SignWord();
         }
 
-        private void SetOptions(TextSignOptions signOptions)
+        private static void SetOptions(TextSignOptions signOptions)
         {
-            signOptions.Left = Convert.ToInt32(signatureData.Left);
-            signOptions.Top = Convert.ToInt32(signatureData.Top);
-            signOptions.Height = Convert.ToInt32(signatureData.ImageHeight);
-            signOptions.Width = Convert.ToInt32(signatureData.ImageWidth);
-            signOptions.RotationAngle = signatureData.Angle;
-            signOptions.PageNumber = signatureData.PageNumber;
+            signOptions.Left = Convert.ToInt32(SignatureData.Left);
+            signOptions.Top = Convert.ToInt32(SignatureData.Top);
+            signOptions.Height = Convert.ToInt32(SignatureData.ImageHeight);
+            signOptions.Width = Convert.ToInt32(SignatureData.ImageWidth);
+            signOptions.RotationAngle = SignatureData.Angle;
+            signOptions.PageNumber = SignatureData.PageNumber;
             signOptions.VerticalAlignment = VerticalAlignment.None;
             signOptions.HorizontalAlignment = HorizontalAlignment.None;
             // setup colors settings
-            signOptions.Background.Color = getColor(textData.backgroundColor);
+            signOptions.Background.Color = getColor(TextData.backgroundColor);
             // setup text color
-            signOptions.ForeColor = getColor(textData.fontColor);
+            signOptions.ForeColor = getColor(TextData.fontColor);
             // setup Font options
-            signOptions.Font.Bold = textData.bold;
-            signOptions.Font.Italic = textData.italic;
-            signOptions.Font.Underline = textData.underline;
-            signOptions.Font.FamilyName = textData.font;
-            signOptions.Font.Size = textData.fontSize;
+            signOptions.Font.Bold = TextData.bold;
+            signOptions.Font.Italic = TextData.italic;
+            signOptions.Font.Underline = TextData.underline;
+            signOptions.Font.FamilyName = TextData.font;
+            signOptions.Font.Size = TextData.fontSize;
         }
     }
 }

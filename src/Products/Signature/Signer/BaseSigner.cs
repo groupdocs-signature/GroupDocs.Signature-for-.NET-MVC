@@ -11,7 +11,7 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Signer
     /// </summary>
     public abstract class BaseSigner
     {
-        protected SignatureDataEntity signatureData;
+        protected static SignatureDataEntity SignatureData { get; set; }
 
         /// <summary>
         /// Constructor
@@ -19,7 +19,7 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Signer
         /// <param name="signatureData">SignatureDataEntity</param>
         public BaseSigner(SignatureDataEntity signatureData)
         {
-            this.signatureData = signatureData;
+            SignatureData = signatureData;
         }
 
        /// <summary>
@@ -27,7 +27,7 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Signer
        /// </summary>
        /// <param name="rgbColor">string</param>
        /// <returns></returns>
-        protected Color getColor(string rgbColor)
+        protected static Color getColor(string rgbColor)
         {
             // get colors info from string
             string[] colors = rgbColor.Split(',');
