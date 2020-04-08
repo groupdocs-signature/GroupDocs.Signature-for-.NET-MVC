@@ -32,9 +32,9 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Controllers
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class SignatureApiController : ApiController
     {
-        private static Common.Config.GlobalConfiguration GlobalConfiguration = new Common.Config.GlobalConfiguration();
-        private List<string> SupportedImageFormats = new List<string>() { ".bmp", ".jpeg", ".jpg", ".tiff", ".tif", ".png" };
-        private DirectoryUtils DirectoryUtils = new DirectoryUtils(GlobalConfiguration.Signature);
+        private static readonly Common.Config.GlobalConfiguration GlobalConfiguration = new Common.Config.GlobalConfiguration();
+        private readonly List<string> SupportedImageFormats = new List<string>() { ".bmp", ".jpeg", ".jpg", ".tiff", ".tif", ".png" };
+        private readonly DirectoryUtils DirectoryUtils = new DirectoryUtils(GlobalConfiguration.Signature);
 
         /// <summary>
         /// Load Signature configuration
@@ -56,10 +56,10 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Controllers
         [Route("loadFileTree")]
         public HttpResponseMessage LoadFileTree(SignaturePostedDataEntity postedData)
         {
-            // get request body       
+            // get request body
             string relDirPath = postedData.path;
             string signatureType = "";
-            if (!String.IsNullOrEmpty(postedData.signatureType))
+            if (!string.IsNullOrEmpty(postedData.signatureType))
             {
                 signatureType = postedData.signatureType;
             }
@@ -95,7 +95,7 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Controllers
                         break;
                 }
                 // get all the files from a directory
-                if (String.IsNullOrEmpty(relDirPath))
+                if (string.IsNullOrEmpty(relDirPath))
                 {
                     relDirPath = rootDirectory;
                 }
@@ -161,14 +161,16 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Controllers
                         for (int i = 0; i < documentInfo.PageCount; i++)
                         {
                             // initiate custom Document description object
-                            SignatureLoadedPageEntity description = new SignatureLoadedPageEntity();
-                            // set current page size
-                            description.height = documentInfo.Pages[i].Height;
-                            description.width = documentInfo.Pages[i].Width;
-                            description.number = i + 1;
+                            SignatureLoadedPageEntity description = new SignatureLoadedPageEntity
+                            {
+                                // set current page size
+                                height = documentInfo.Pages[i].Height,
+                                width = documentInfo.Pages[i].Width,
+                                number = i + 1
+                            };
                             if (GlobalConfiguration.Signature.PreloadPageCount == 0)
                             {
-                                byte[] pageBytes = RenderPageToMemoryStream(signature, i, fileStream, password).ToArray();
+                                byte[] pageBytes = RenderPageToMemoryStream(signature, i).ToArray();
                                 string encodedImage = Convert.ToBase64String(pageBytes);
                                 pageBytes = null;
                                 description.SetData(encodedImage);
@@ -197,13 +199,14 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Controllers
             }
         }
 
-        static MemoryStream RenderPageToMemoryStream(GroupDocs.Signature.Signature signature, int pageNumberToRender, FileStream fileStream, string password)
+        static MemoryStream RenderPageToMemoryStream(GroupDocs.Signature.Signature signature, int pageNumberToRender)
         {
             MemoryStream result = new MemoryStream();
-            PreviewOptions previewOptions = new PreviewOptions(pageNumber => result);
-
-            previewOptions.PreviewFormat = PreviewOptions.PreviewFormats.PNG;
-            previewOptions.PageNumbers = new int[] { pageNumberToRender };
+            PreviewOptions previewOptions = new PreviewOptions(pageNumber => result)
+            {
+                PreviewFormat = PreviewOptions.PreviewFormats.PNG,
+                PageNumbers = new[] { pageNumberToRender }
+            };
 
             signature.GeneratePreview(previewOptions);
 
@@ -233,7 +236,7 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Controllers
                     using (GroupDocs.Signature.Signature signature = new GroupDocs.Signature.Signature(fileStream, GetLoadOptions(password)))
                     {
                         // get page image
-                        byte[] bytes = RenderPageToMemoryStream(signature, pageNumber - 1, fileStream, password).ToArray();
+                        byte[] bytes = RenderPageToMemoryStream(signature, pageNumber - 1).ToArray();
                         // encode ByteArray into string
                         string encodedImage = Convert.ToBase64String(bytes);
                         loadedPage.SetData(encodedImage);
@@ -265,7 +268,6 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Controllers
         /// Download document
         /// </summary>
         /// <param name="path">string</param>
-        /// <param name="signed">bool</param>
         /// <returns></returns>
         [HttpGet]
         [Route("downloadDocument")]
@@ -282,8 +284,10 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Controllers
                     var fileStream = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
                     response.Content = new StreamContent(fileStream);
                     response.Content.Headers.ContentType = new MediaTypeHeaderValue("application/octet-stream");
-                    response.Content.Headers.ContentDisposition = new ContentDispositionHeaderValue("attachment");
-                    response.Content.Headers.ContentDisposition.FileName = Path.GetFileName(path);
+                    response.Content.Headers.ContentDisposition = new ContentDispositionHeaderValue("attachment")
+                    {
+                        FileName = Path.GetFileName(path)
+                    };
                     return response;
                 }
             }
@@ -302,17 +306,21 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Controllers
             }
 
             // get document path
-            String documentGuid = signDocumentRequest.guid;
-            String fileName = Path.GetFileName(documentGuid);
+            string documentGuid = signDocumentRequest.guid;
+            string fileName = Path.GetFileName(documentGuid);
             try
             {
                 Stream inputStream = SignByStream(signDocumentRequest);
-                HttpResponseMessage response = new HttpResponseMessage(HttpStatusCode.OK);
-                response.Content = new StreamContent(inputStream);
+                HttpResponseMessage response = new HttpResponseMessage(HttpStatusCode.OK)
+                {
+                    Content = new StreamContent(inputStream)
+                };
                 // add file into the response
                 response.Content.Headers.ContentType = new MediaTypeHeaderValue("application/octet-stream");
-                response.Content.Headers.ContentDisposition = new ContentDispositionHeaderValue("attachment");
-                response.Content.Headers.ContentDisposition.FileName = Path.GetFileName(fileName);
+                response.Content.Headers.ContentDisposition = new ContentDispositionHeaderValue("attachment")
+                {
+                    FileName = Path.GetFileName(fileName)
+                };
                 return response;
             }
             catch (System.Exception ex)
@@ -324,15 +332,14 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Controllers
 
         private Stream SignByStream(SignaturePostedDataEntity postedData)
         {
-            string password = "";
             try
             {
                 // get/set parameters
                 string documentGuid = postedData.guid;
-                password = postedData.password;
+                string password = postedData.password;
                 SignatureDataEntity[] signaturesData = postedData.signaturesData;
                 List<SignOptions> signsCollection = new List<SignOptions>();
-                // check if document type is image                
+                // check if document type is image
                 if (SupportedImageFormats.Contains(Path.GetExtension(documentGuid)))
                 {
                     postedData.documentType = "image";
@@ -449,8 +456,10 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Controllers
                     }
                 }
                 // initiate uploaded file description class
-                SignatureFileDescriptionEntity uploadedDocument = new SignatureFileDescriptionEntity();
-                uploadedDocument.guid = fileSavePath;
+                SignatureFileDescriptionEntity uploadedDocument = new SignatureFileDescriptionEntity
+                {
+                    guid = fileSavePath
+                };
                 MemoryStream ms = new MemoryStream();
                 using (FileStream file = new FileStream(fileSavePath, FileMode.Open, FileAccess.ReadWrite))
                 {
@@ -530,20 +539,20 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Controllers
                 string imageName = "";
                 if (files.Length == 0)
                 {
-                    imageName = String.Format("{0:000}.png", 1);
+                    imageName = string.Format("{0:000}.png", 1);
                 }
                 else
                 {
                     for (int i = 0; i <= files.Length; i++)
                     {
-                        string path = Path.Combine(DirectoryUtils.DataDirectory.ImageDirectory.Path, String.Format("{0:000}.png", i + 1));
+                        string path = Path.Combine(DirectoryUtils.DataDirectory.ImageDirectory.Path, string.Format("{0:000}.png", i + 1));
                         if (files.Contains(path))
                         {
                             continue;
                         }
                         else
                         {
-                            imageName = String.Format("{0:000}.png", i + 1);
+                            imageName = string.Format("{0:000}.png", i + 1);
                         }
                     }
                 }
@@ -589,7 +598,7 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Controllers
                 for (int i = 0; i <= listOfFiles.Length; i++)
                 {
                     int number = i + 1;
-                    newFileName = String.Format("{0:000}", number);
+                    newFileName = string.Format("{0:000}", number);
                     filePath = previewPath + "/" + newFileName + ".png";
                     if (System.IO.File.Exists(filePath))
                     {
@@ -672,7 +681,7 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Controllers
                 string[] listOfFiles = Directory.GetFiles(previewPath);
                 string fileName = "";
                 string filePath = "";
-                if (!String.IsNullOrEmpty(opticalCodeData.imageGuid))
+                if (!string.IsNullOrEmpty(opticalCodeData.imageGuid))
                 {
                     filePath = opticalCodeData.imageGuid;
                     fileName = Path.GetFileNameWithoutExtension(opticalCodeData.imageGuid);
@@ -787,7 +796,7 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Controllers
                     {
                         int number = i + 1;
                         // set file name, for example 001
-                        fileName = String.Format("{0:000}", number);
+                        fileName = string.Format("{0:000}", number);
                         filePath = Path.Combine(xmlPath, fileName + ".xml");
                         // check if file with such name already exists
                         if (System.IO.File.Exists(filePath))
@@ -851,7 +860,7 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Controllers
         {
             try
             {
-                String signatureType = deleteSignatureFileRequest.getSignatureType();
+                string signatureType = deleteSignatureFileRequest.getSignatureType();
                 switch (signatureType)
                 {
                     case "image":
@@ -867,7 +876,7 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Controllers
                         {
                             File.Delete(deleteSignatureFileRequest.getGuid());
                         }
-                        String xmlFilePath = GetXmlFilePath(
+                        string xmlFilePath = GetXmlFilePath(
                             signatureType,
                             Path.GetFileNameWithoutExtension(deleteSignatureFileRequest.getGuid()) + ".xml"
                         );
@@ -892,12 +901,11 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Controllers
         [Route("sign")]
         public HttpResponseMessage Sign(SignaturePostedDataEntity postedData)
         {
-            string password = "";
             try
             {
                 // get/set parameters
                 string documentGuid = postedData.guid;
-                password = postedData.password;
+                string password = postedData.password;
                 SignatureDataEntity[] signaturesData = postedData.signaturesData;
                 var signsCollection = new List<SignOptions>();
                 // check if document type is image                
@@ -1114,8 +1122,10 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Controllers
         private SignedDocumentEntity SignDocument(string documentGuid, string password, List<SignOptions> signsCollection)
         {
             // set save options
-            SaveOptions saveOptions = new SaveOptions();
-            saveOptions.OverwriteExistingFiles = false;
+            SaveOptions saveOptions = new SaveOptions
+            {
+                OverwriteExistingFiles = false
+            };
 
             // sign document
             string tempFilename = Path.GetFileNameWithoutExtension(documentGuid) + "_tmp";
@@ -1123,7 +1133,7 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Controllers
             SignedDocumentEntity signedDocument = new SignedDocumentEntity();
             using (GroupDocs.Signature.Signature signature = new GroupDocs.Signature.Signature(documentGuid, GetLoadOptions(password)))
             {
-                SignResult signResult = signature.Sign(tempPath, signsCollection, saveOptions);
+                signature.Sign(tempPath, signsCollection, saveOptions);
             }
 
             File.Delete(documentGuid);
@@ -1146,20 +1156,19 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Controllers
             // set save options
             SaveOptions saveOptions = new SaveOptions();
 
-            using (FileStream fileStream = File.Open(documentGuid, FileMode.Open, FileAccess.ReadWrite, FileShare.ReadWrite))
+            FileStream fileStream = File.Open(documentGuid, FileMode.Open, FileAccess.ReadWrite, FileShare.ReadWrite);
+            
+            using (GroupDocs.Signature.Signature signature = new GroupDocs.Signature.Signature(fileStream, GetLoadOptions(password)))
             {
-                using (GroupDocs.Signature.Signature signature = new GroupDocs.Signature.Signature(fileStream, GetLoadOptions(password)))
-                {
-                    var signResult = signature.Sign(documentGuid, signsCollection, saveOptions);
+                signature.Sign(documentGuid, signsCollection, saveOptions);
 
-                    return fileStream;
-                }
+                return fileStream;
             }
         }
 
         private string GetXmlFilePath(string signatureType, string fileName)
         {
-            string path = "";
+            string path;
             switch (signatureType)
             {
                 case "stamp":
