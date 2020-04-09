@@ -641,7 +641,7 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Controllers
                 SignatureDataEntity signaturesData = new SignatureDataEntity
                 {
                     ImageHeight = 200,
-                    ImageWidth = 270,
+                    ImageWidth = 200,
                     Left = 0,
                     Top = 0
                 };
