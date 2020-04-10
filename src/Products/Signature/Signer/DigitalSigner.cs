@@ -10,7 +10,7 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Signer
     /// </summary>
     public class DigitalSigner : BaseSigner
     {
-        private string password;
+        public static string Password { get; set; }
 
         /// <summary>
         /// Constructor
@@ -20,7 +20,7 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Signer
         public DigitalSigner(SignatureDataEntity signatureData, string password)
                 : base(signatureData)
         {
-            this.password = password;
+            Password = password;
         }
 
         /// <summary>
@@ -29,11 +29,8 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Signer
         /// <returns>SignOptions</returns>
         public override SignOptions SignPdf()
         {
-            // setup digital signature options
-            PdfSignDigitalOptions signOptions = new PdfSignDigitalOptions(signatureData.SignatureGuid);
-            SetOptions(signOptions);           
-            return signOptions;
-        }       
+            return SignWord();
+        }
 
         /// <summary>
         /// Add digital signature options for image file
@@ -51,7 +48,7 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Signer
         /// <returns>SignOptions</returns>
         public override SignOptions SignWord()
         {
-            WordsSignDigitalOptions signOptions = new WordsSignDigitalOptions(signatureData.SignatureGuid);
+            DigitalSignOptions signOptions = new DigitalSignOptions(SignatureData.SignatureGuid);
             SetOptions(signOptions);
             return signOptions;
         }
@@ -62,9 +59,7 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Signer
         /// <returns>SignOptions</returns>
         public override SignOptions SignCells()
         {
-            CellsSignDigitalOptions signOptions = new CellsSignDigitalOptions(signatureData.SignatureGuid);
-            SetOptions(signOptions);
-            return signOptions;
+            return SignWord();
         }
 
         /// <summary>
@@ -77,24 +72,24 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Signer
             throw new NotSupportedException("This file type is not supported");
         }
 
-        private void SetOptions(dynamic signOptions)
+        private static void SetOptions(DigitalSignOptions signOptions)
         {
-            if (signOptions is PdfSignDigitalOptions)
+            if (signOptions is DigitalSignOptions)
             {
-                signOptions.Reason = signatureData.Reason;
-                signOptions.Contact = signatureData.Contact;
-                signOptions.Location = signatureData.Address;
+                signOptions.Reason = SignatureData.Reason;
+                signOptions.Contact = SignatureData.Contact;
+                signOptions.Location = SignatureData.Address;
             }
             else
             {
-                signOptions.Signature.Comments = signatureData.SignatureComment;
+                signOptions.Signature.Comments = SignatureData.SignatureComment;
             }
-            if (!String.IsNullOrEmpty(signatureData.Date))
+            if (!String.IsNullOrEmpty(SignatureData.Date))
             {
-                signOptions.Signature.SignTime = DateTime.ParseExact(signatureData.Date, "dd-MM-yyyy", CultureInfo.InvariantCulture);
+                signOptions.Signature.SignTime = DateTime.ParseExact(SignatureData.Date, "dd-MM-yyyy", CultureInfo.InvariantCulture);
             }
-            signOptions.Password = password;
-            signOptions.SignAllPages = true;
+            signOptions.Password = Password;
+            signOptions.AllPages = true;
         }
     }
 }

@@ -11,7 +11,7 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Signer
     /// </summary>
     public class BarCodeSigner : BaseSigner
     {
-        private OpticalXmlEntity QrCodeData;       
+        private OpticalXmlEntity QrCodeData;
 
         /// <summary>
         /// Constructor
@@ -30,13 +30,8 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Signer
         /// <returns>SignOptions</returns>
         public override SignOptions SignPdf()
         {
-            // setup options
-            PdfBarcodeSignOptions signOptions = new PdfBarcodeSignOptions(QrCodeData.text);
-            SetOptions(signOptions);                     
-            return signOptions;
+            return SignWord();
         }
-
-        
 
         /// <summary>
         /// Add signature data for image file
@@ -44,10 +39,7 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Signer
         /// <returns>SignOptions</returns>
         public override SignOptions SignImage()
         {
-            // setup options
-            ImagesBarcodeSignOptions signOptions = new ImagesBarcodeSignOptions(QrCodeData.text);
-            SetOptions(signOptions);
-            return signOptions;
+            return SignWord();
         }
 
         /// <summary>
@@ -57,7 +49,7 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Signer
         public override SignOptions SignWord()
         {
             // setup options
-            WordsBarcodeSignOptions signOptions = new WordsBarcodeSignOptions(QrCodeData.text);
+            BarcodeSignOptions signOptions = new BarcodeSignOptions(QrCodeData.text);
             SetOptions(signOptions);
             return signOptions;
         }
@@ -68,10 +60,7 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Signer
         /// <returns>SignOptions</returns>
         public override SignOptions SignCells()
         {
-            // setup options
-            CellsBarcodeSignOptions signOptions = new CellsBarcodeSignOptions(QrCodeData.text);
-            SetOptions(signOptions);
-            return signOptions;
+            return SignWord();
         }
 
         /// <summary>
@@ -80,25 +69,22 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Signer
         /// <returns>SignOptions</returns>
         public override SignOptions SignSlides()
         {
-            // setup options
-            SlidesBarcodeSignOptions signOptions = new SlidesBarcodeSignOptions(QrCodeData.text);
-            SetOptions(signOptions);
-            return signOptions;
+            return SignWord();
         }
 
-        private void SetOptions(BarcodeSignOptions signOptions)
+        private static void SetOptions(BarcodeSignOptions signOptions)
         {
             signOptions.EncodeType = BarcodeTypes.Code39Standard;
-            signOptions.HorizontalAlignment = signatureData.getHorizontalAlignment();
-            signOptions.VerticalAlignment = signatureData.getVerticalAlignment();
-            signOptions.Width = Convert.ToInt32(signatureData.ImageWidth);
-            signOptions.Height = Convert.ToInt32(signatureData.ImageHeight);
-            signOptions.Top = Convert.ToInt32(signatureData.Top);
-            signOptions.Left = Convert.ToInt32(signatureData.Left);
-            signOptions.DocumentPageNumber = signatureData.PageNumber;
-            if (signatureData.Angle != 0)
+            signOptions.HorizontalAlignment = SignatureData.getHorizontalAlignment();
+            signOptions.VerticalAlignment = SignatureData.getVerticalAlignment();
+            signOptions.Width = Convert.ToInt32(SignatureData.ImageWidth);
+            signOptions.Height = Convert.ToInt32(SignatureData.ImageHeight);
+            signOptions.Top = Convert.ToInt32(SignatureData.Top);
+            signOptions.Left = Convert.ToInt32(SignatureData.Left);
+            signOptions.PageNumber = SignatureData.PageNumber;
+            if (SignatureData.Angle != 0)
             {
-                signOptions.RotationAngle = signatureData.Angle;
+                signOptions.RotationAngle = SignatureData.Angle;
             }
         }
     }
