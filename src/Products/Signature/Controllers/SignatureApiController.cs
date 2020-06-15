@@ -1310,7 +1310,7 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Controllers
         /// <param name="serializableObject">Object.</param>
         private void SaveXmlData<T>(string xmlPath, string xmlFileName, T serializableObject)
         {
-            if (serializableObject == null)
+            if (object.Equals(serializableObject, default(T)))
             {
                 return;
             }

@@ -14,9 +14,9 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Loader
     /// </summary>
     public class SignatureLoader
     {
-        private string currentPath;
-        private Common.Config.GlobalConfiguration globalConfiguration;
-        private DirectoryUtils directoryUtils;
+        private readonly string currentPath;
+        private readonly Common.Config.GlobalConfiguration globalConfiguration;
+        private readonly DirectoryUtils directoryUtils;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SignatureLoader"/> class.
