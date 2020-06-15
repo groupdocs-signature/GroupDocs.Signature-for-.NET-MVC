@@ -1,98 +1,100 @@
-﻿using GroupDocs.Signature.MVC.Products.Common.Config;
-using GroupDocs.Signature.MVC.Products.Common.Util.Parser;
-using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.IO;
 using System.Linq;
+using GroupDocs.Signature.MVC.Products.Common.Config;
+using GroupDocs.Signature.MVC.Products.Common.Util.Parser;
+using Newtonsoft.Json;
 
 namespace GroupDocs.Signature.MVC.Products.Signature.Config
 {
     /// <summary>
-    /// SignatureConfiguration
+    /// SignatureConfiguration.
     /// </summary>
     public class SignatureConfiguration : CommonConfiguration
     {
         [JsonProperty]
-        public string FilesDirectory = "DocumentSamples/Signature";
+        internal string filesDirectory = "DocumentSamples/Signature";
 
         [JsonProperty]
-        public string DefaultDocument = "";
+        private string defaultDocument = string.Empty;
 
         [JsonProperty]
-        public string DataDirectory = "";
+        internal string dataDirectory = string.Empty;
 
         [JsonProperty]
-        public int PreloadPageCount;
+        internal int preloadPageCount;
 
         [JsonProperty]
-        public bool textSignature = true;
+        private bool textSignature = true;
 
         [JsonProperty]
-        public bool imageSignature = true;
+        private bool imageSignature = true;
 
         [JsonProperty]
-        public bool digitalSignature = true;
+        private bool digitalSignature = true;
 
         [JsonProperty]
-        public bool qrCodeSignature = true;
+        private bool qrCodeSignature = true;
 
         [JsonProperty]
-        public bool barCodeSignature = true;
+        private bool barCodeSignature = true;
 
         [JsonProperty]
-        public bool stampSignature = true;
+        private bool stampSignature = true;
 
         [JsonProperty]
-        public bool handSignature = true;
+        private bool handSignature = true;
 
         [JsonProperty]
-        public bool downloadOriginal = true;
+        private bool downloadOriginal = true;
 
         [JsonProperty]
-        public bool downloadSigned = true;
+        private bool downloadSigned = true;
 
         [JsonProperty]
-        private string TempFilesDirectory = "";
+        private string tempFilesDirectory = string.Empty;
 
         [JsonProperty]
         private bool zoom = true;
 
         /// <summary>
-        /// Get signature configuration section from the Web.config
+        /// Initializes a new instance of the <see cref="SignatureConfiguration"/> class.
+        /// Get signature configuration section from the Web.config.
         /// </summary>
         public SignatureConfiguration()
         {
             YamlParser parser = new YamlParser();
             dynamic configuration = parser.GetConfiguration("signature");
             ConfigurationValuesGetter valuesGetter = new ConfigurationValuesGetter(configuration);
-            // get Comparison configuration section from the web.config            
-            FilesDirectory = valuesGetter.GetStringPropertyValue("filesDirectory", FilesDirectory);
-            if (!IsFullPath(FilesDirectory))
+
+            // get Comparison configuration section from the web.config
+            this.filesDirectory = valuesGetter.GetStringPropertyValue("filesDirectory", this.filesDirectory);
+            if (!IsFullPath(this.filesDirectory))
             {
-                FilesDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, FilesDirectory);
-                if (!Directory.Exists(FilesDirectory))
+                this.filesDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, this.filesDirectory);
+                if (!Directory.Exists(this.filesDirectory))
                 {
-                    Directory.CreateDirectory(FilesDirectory);
+                    Directory.CreateDirectory(this.filesDirectory);
                 }
             }
-            DataDirectory = valuesGetter.GetStringPropertyValue("dataDirectory", DataDirectory);
-            DefaultDocument = valuesGetter.GetStringPropertyValue("defaultDocument", DefaultDocument);
-            textSignature = valuesGetter.GetBooleanPropertyValue("textSignature", textSignature);
-            imageSignature = valuesGetter.GetBooleanPropertyValue("imageSignature", imageSignature);
-            digitalSignature = valuesGetter.GetBooleanPropertyValue("digitalSignature", digitalSignature);
-            qrCodeSignature = valuesGetter.GetBooleanPropertyValue("qrCodeSignature", qrCodeSignature);
-            barCodeSignature = valuesGetter.GetBooleanPropertyValue("barCodeSignature", barCodeSignature);
-            stampSignature = valuesGetter.GetBooleanPropertyValue("stampSignature", stampSignature);
-            handSignature = valuesGetter.GetBooleanPropertyValue("handSignature", handSignature);
-            downloadOriginal = valuesGetter.GetBooleanPropertyValue("downloadOriginal", downloadOriginal);
-            downloadSigned = valuesGetter.GetBooleanPropertyValue("downloadSigned", downloadSigned);
-            PreloadPageCount = valuesGetter.GetIntegerPropertyValue("preloadPageCount", PreloadPageCount);
-            zoom = valuesGetter.GetBooleanPropertyValue("zoom", zoom);
+            this.dataDirectory = valuesGetter.GetStringPropertyValue("dataDirectory", this.dataDirectory);
+            this.defaultDocument = valuesGetter.GetStringPropertyValue("defaultDocument", this.defaultDocument);
+            this.textSignature = valuesGetter.GetBooleanPropertyValue("textSignature", this.textSignature);
+            this.imageSignature = valuesGetter.GetBooleanPropertyValue("imageSignature", this.imageSignature);
+            this.digitalSignature = valuesGetter.GetBooleanPropertyValue("digitalSignature", this.digitalSignature);
+            this.qrCodeSignature = valuesGetter.GetBooleanPropertyValue("qrCodeSignature", this.qrCodeSignature);
+            this.barCodeSignature = valuesGetter.GetBooleanPropertyValue("barCodeSignature", this.barCodeSignature);
+            this.stampSignature = valuesGetter.GetBooleanPropertyValue("stampSignature", this.stampSignature);
+            this.handSignature = valuesGetter.GetBooleanPropertyValue("handSignature", this.handSignature);
+            this.downloadOriginal = valuesGetter.GetBooleanPropertyValue("downloadOriginal", this.downloadOriginal);
+            this.downloadSigned = valuesGetter.GetBooleanPropertyValue("downloadSigned", this.downloadSigned);
+            this.preloadPageCount = valuesGetter.GetIntegerPropertyValue("preloadPageCount", this.preloadPageCount);
+            this.zoom = valuesGetter.GetBooleanPropertyValue("zoom", this.zoom);
         }
 
         private static bool IsFullPath(string path)
         {
-            return !String.IsNullOrWhiteSpace(path)
+            return !string.IsNullOrWhiteSpace(path)
                 && path.IndexOfAny(Path.GetInvalidPathChars().ToArray()) == -1
                 && Path.IsPathRooted(path)
                 && !Path.GetPathRoot(path).Equals(Path.DirectorySeparatorChar.ToString(), StringComparison.Ordinal);
@@ -100,12 +102,12 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Config
 
         public void SetTempFilesDirectory(string tempFilesDirectory)
         {
-            this.TempFilesDirectory = tempFilesDirectory;
+            this.tempFilesDirectory = tempFilesDirectory;
         }
 
         public string GetTempFilesDirectory()
         {
-            return this.TempFilesDirectory;
+            return this.tempFilesDirectory;
         }
     }
 }

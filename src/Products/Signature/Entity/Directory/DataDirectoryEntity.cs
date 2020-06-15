@@ -24,9 +24,9 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Entity.Directory
         {
             this.signatureConfiguration = signatureConfiguration;
             this.currentDirectoryPath = currentDirectoryPath;
-            Path = signatureConfiguration.DataDirectory + currentDirectoryPath;
-            PreviewPath = signatureConfiguration.DataDirectory + currentDirectoryPath + DATA_PREVIEW_FOLDER;
-            XmlPath = signatureConfiguration.DataDirectory + currentDirectoryPath + DATA_XML_FOLDER;            
+            Path = signatureConfiguration.dataDirectory + currentDirectoryPath;
+            PreviewPath = signatureConfiguration.dataDirectory + currentDirectoryPath + DATA_PREVIEW_FOLDER;
+            XmlPath = signatureConfiguration.dataDirectory + currentDirectoryPath + DATA_XML_FOLDER;            
         }       
     }
 }
