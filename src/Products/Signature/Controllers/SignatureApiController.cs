@@ -103,7 +103,7 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Controllers
                 {
                     relDirPath = Path.Combine(rootDirectory, relDirPath);
                 }
-                SignatureLoader signatureLoader = new SignatureLoader(relDirPath, GlobalConfiguration);
+                SignatureLoader signatureLoader = new SignatureLoader(relDirPath, GlobalConfiguration, DirectoryUtils);
                 List<SignatureFileDescriptionEntity> fileList;
                 switch (signatureType)
                 {
@@ -230,7 +230,7 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Controllers
                 int pageNumber = postedData.page;
                 password = postedData.password;
                 SignatureLoadedPageEntity loadedPage = new SignatureLoadedPageEntity();
-                
+
                 using (FileStream fileStream = File.Open(documentGuid, FileMode.Open, FileAccess.ReadWrite, FileShare.ReadWrite))
                 {
                     using (GroupDocs.Signature.Signature signature = new GroupDocs.Signature.Signature(fileStream, GetLoadOptions(password)))
@@ -276,7 +276,7 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Controllers
             if (!string.IsNullOrEmpty(path))
             {
                 // check if file exists
-                if (System.IO.File.Exists(path))
+                if (File.Exists(path))
                 {
                     // prepare response message
                     HttpResponseMessage response = new HttpResponseMessage(HttpStatusCode.OK);
@@ -557,12 +557,12 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Controllers
                     }
                 }
                 string imagePath = Path.Combine(DirectoryUtils.DataDirectory.ImageDirectory.Path, imageName);
-                if (System.IO.File.Exists(imagePath))
+                if (File.Exists(imagePath))
                 {
                     imageName = Path.GetFileName(Common.Resources.Resources.GetFreeFileName(DirectoryUtils.DataDirectory.ImageDirectory.Path, imageName));
                     imagePath = Path.Combine(DirectoryUtils.DataDirectory.ImageDirectory.Path, imageName);
                 }
-                System.IO.File.WriteAllBytes(imagePath, Convert.FromBase64String(encodedImage));
+                File.WriteAllBytes(imagePath, Convert.FromBase64String(encodedImage));
                 savedImage.guid = imagePath;
                 // return loaded page object
                 return Request.CreateResponse(HttpStatusCode.OK, savedImage);
@@ -600,7 +600,7 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Controllers
                     int number = i + 1;
                     newFileName = string.Format("{0:000}", number);
                     filePath = previewPath + "/" + newFileName + ".png";
-                    if (System.IO.File.Exists(filePath))
+                    if (File.Exists(filePath))
                     {
                         continue;
                     }
@@ -609,7 +609,7 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Controllers
                         break;
                     }
                 }
-                System.IO.File.WriteAllBytes(filePath, Convert.FromBase64String(encodedImage));
+                File.WriteAllBytes(filePath, Convert.FromBase64String(encodedImage));
                 savedImage.guid = filePath;
                 // stamp data to xml file saving
                 SaveXmlData(xmlPath, newFileName, stampData);
@@ -630,13 +630,13 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Controllers
         /// <returns>Signature preview image</returns>
         [HttpPost]
         [Route("saveOpticalCode")]
-        public HttpResponseMessage SaveOpticalCode([FromBody]dynamic postedData)
+        public HttpResponseMessage SaveOpticalCode([FromBody] dynamic postedData)
         {
             try
             {
                 OpticalXmlEntity opticalCodeData = JsonConvert.DeserializeObject<OpticalXmlEntity>(postedData.properties.ToString());
                 string signatureType = postedData.signatureType;
-                
+
                 // initiate signature data wrapper with default values
                 SignatureDataEntity signaturesData = new SignatureDataEntity
                 {
@@ -655,7 +655,7 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Controllers
                 BarCodeSigner barCodeSigner;
                 // initiate signature options collection
                 var signOptionsCollection = new List<SignOptions>();
-                
+
                 // check optical signature type
                 if (signatureType.Equals("qrCode"))
                 {
@@ -677,7 +677,7 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Controllers
                     // generate unique file names for preview image and xml file
                     signOptionsCollection.Add(barCodeSigner.SignImage());
                 }
-                
+
                 string[] listOfFiles = Directory.GetFiles(previewPath);
                 string fileName = "";
                 string filePath = "";
@@ -694,7 +694,7 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Controllers
                         fileName = opticalCodeData.text;
                         filePath = Path.Combine(previewPath, fileName + ".png");
                         // check if file with such name already exists
-                        if (System.IO.File.Exists(filePath))
+                        if (File.Exists(filePath))
                         {
                             continue;
                         }
@@ -704,7 +704,7 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Controllers
                         }
                     }
                 }
-                
+
                 // generate empty image for future signing with Optical signature, such approach required to get QR-Code as image
                 using (Bitmap bitMap = new Bitmap(200, 200))
                 {
@@ -718,7 +718,7 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Controllers
                         }
                     }
                 }
-                
+
                 // Optical data to xml file saving
                 SaveXmlData(xmlPath, fileName, opticalCodeData);
 
@@ -740,25 +740,25 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Controllers
                     }
                 }
 
-                System.IO.File.Delete(filePath);
-                System.IO.File.Move(tempFile, filePath);
+                File.Delete(filePath);
+                File.Move(tempFile, filePath);
 
                 // set data for response
                 opticalCodeData.imageGuid = filePath;
                 opticalCodeData.height = Convert.ToInt32(signaturesData.ImageHeight);
                 opticalCodeData.width = Convert.ToInt32(signaturesData.ImageWidth);
-                
+
                 // get signature preview as Base64 string
-                byte[] imageArray = System.IO.File.ReadAllBytes(filePath);
+                byte[] imageArray = File.ReadAllBytes(filePath);
                 string base64ImageRepresentation = Convert.ToBase64String(imageArray);
                 opticalCodeData.encodedImage = base64ImageRepresentation;
-                
+
                 if (opticalCodeData.temp)
                 {
                     File.Delete(filePath);
                     File.Delete(Path.Combine(xmlPath, fileName + ".xml"));
                 }
-                
+
                 // return loaded page object
                 return Request.CreateResponse(HttpStatusCode.OK, opticalCodeData);
             }
@@ -799,7 +799,7 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Controllers
                         fileName = string.Format("{0:000}", number);
                         filePath = Path.Combine(xmlPath, fileName + ".xml");
                         // check if file with such name already exists
-                        if (System.IO.File.Exists(filePath))
+                        if (File.Exists(filePath))
                         {
                             continue;
                         }
@@ -836,7 +836,7 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Controllers
             {
                 List<string> fonts = new List<string>();
 
-                foreach (FontFamily font in System.Drawing.FontFamily.Families)
+                foreach (FontFamily font in FontFamily.Families)
                 {
                     fonts.Add(font.Name);
                 }
@@ -1157,7 +1157,7 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Controllers
             SaveOptions saveOptions = new SaveOptions();
 
             FileStream fileStream = File.Open(documentGuid, FileMode.Open, FileAccess.ReadWrite, FileShare.ReadWrite);
-            
+
             using (GroupDocs.Signature.Signature signature = new GroupDocs.Signature.Signature(fileStream, GetLoadOptions(password)))
             {
                 signature.Sign(documentGuid, signsCollection, saveOptions);
@@ -1257,9 +1257,9 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Controllers
             }
         }
 
-        private static Options.LoadOptions GetLoadOptions(string password)
+        private static LoadOptions GetLoadOptions(string password)
         {
-            Options.LoadOptions loadOptions = new Options.LoadOptions
+            LoadOptions loadOptions = new LoadOptions
             {
                 Password = password
             };
