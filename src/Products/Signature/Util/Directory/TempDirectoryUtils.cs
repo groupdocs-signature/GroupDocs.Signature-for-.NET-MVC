@@ -1,39 +1,38 @@
-﻿using GroupDocs.Signature.MVC.Products.Common.Util.Directory;
-using GroupDocs.Signature.MVC.Products.Signature.Config;
-using System;
+﻿using GroupDocs.Signature.MVC.Products.Signature.Config;
 
 namespace GroupDocs.Signature.MVC.Products.Signature.Util.Directory
 {
     /// <summary>
-    /// OutputDirectoryUtils
+    /// OutputDirectoryUtils.
     /// </summary>
     public class TempDirectoryUtils : IDirectoryUtils
     {
-        private readonly String OUTPUT_FOLDER = "/SignedTemp";
+        internal readonly string OUTPUT_FOLDER = "/SignedTemp";
         private SignatureConfiguration signatureConfiguration;
 
         /// <summary>
-        /// Constructor
+        /// Initializes a new instance of the <see cref="TempDirectoryUtils"/> class.
+        /// Constructor.
         /// </summary>
-        /// <param name="signatureConfiguration">SignatureConfiguration</param>
+        /// <param name="signatureConfiguration">SignatureConfiguration.</param>
         public TempDirectoryUtils(SignatureConfiguration signatureConfiguration)
         {
             this.signatureConfiguration = signatureConfiguration;
 
             // create output directories
-            if (String.IsNullOrEmpty(signatureConfiguration.GetTempFilesDirectory()))
+            if (string.IsNullOrEmpty(signatureConfiguration.GetTempFilesDirectory()))
             {
-                signatureConfiguration.SetTempFilesDirectory(signatureConfiguration.FilesDirectory + OUTPUT_FOLDER);
+                signatureConfiguration.SetTempFilesDirectory(signatureConfiguration.filesDirectory + this.OUTPUT_FOLDER);
             }
         }
 
         /// <summary>
-        /// Get path
+        /// Get path.
         /// </summary>
-        /// <returns>string</returns>
+        /// <returns>string.</returns>
         public string GetPath()
         {
-            return signatureConfiguration.GetTempFilesDirectory();
+            return this.signatureConfiguration.GetTempFilesDirectory();
         }
     }
 }

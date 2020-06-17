@@ -25,7 +25,7 @@ namespace GroupDocs.Signature.MVC.Products.Signature.Util.Directory
         /// <returns>string</returns>
         public string GetPath()
         {
-            return signatureConfiguration.FilesDirectory;
+            return signatureConfiguration.filesDirectory;
         }
     }
 }

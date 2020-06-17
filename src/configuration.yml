@@ -79,3 +79,5 @@ signature:
   downloadOriginal: true
   # Enable/disable signed document downloading
   downloadSigned: true
+  # Enable/disable zoom
+  zoom: true
