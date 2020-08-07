@@ -147,12 +147,4 @@ Please have a look at the LICENSE.md for more details
 - [Create digital signature](https://github.com/groupdocs-signature/GroupDocs.Signature-for-.NET-WebForms) with .NET WebForms 
 
 
-## Resources
-- **Website:** [www.groupdocs.com](http://www.groupdocs.com)
-- **Product Home:** [GroupDocs.Signature for .NET](https://products.groupdocs.com/Signature/NET)
-- **Product API References:** [GroupDocs.Signature for .NET API](https://apireference.groupdocs.com/NET/Signature)
-- **Download:** [Download GroupDocs.Signature for .NET](http://downloads.groupdocs.com/Signature/NET)
-- **Documentation:** [GroupDocs.Signature for .NET Documentation](https://docs.groupdocs.com/display/SignatureNET/Home)
-- **Free Support Forum:** [GroupDocs.Signature for .NET Free Support Forum](https://forum.groupdocs.com/c/Signature)
-- **Paid Support Helpdesk:** [GroupDocs.Signature for .NET Paid Support Helpdesk](https://helpdesk.groupdocs.com)
-- **Blog:** [GroupDocs.Signature for .NET Blog](https://blog.groupdocs.com/category/groupdocs-Signature-product-family/)
+[Home](https://www.groupdocs.com/) | [Product Page](https://products.groupdocs.com/signature/net) | [Documentation](https://docs.groupdocs.com/signature/net/) | [Demo](https://products.groupdocs.app/signature/family) | [API Reference](https://apireference.groupdocs.com/signature/net) | [Examples](https://github.com/groupdocs-signature/GroupDocs.Signature-for.NET) | [Blog](https://blog.groupdocs.com/category/signature/) | [Free Support](https://forum.groupdocs.com/c/signature) | [Temporary License](https://purchase.groupdocs.com/temporary-license)
