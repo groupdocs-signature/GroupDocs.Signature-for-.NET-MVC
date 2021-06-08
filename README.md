@@ -134,6 +134,14 @@ For all methods above you can adjust settings in `configuration.yml`. By default
 | **`downloadOriginal`**             | Boolean |      `true`       | Enable/disable original document downloading                                                                                                 |
 | **`downloadSigned`**               | Boolean |      `true`       | Enable/disable signed document downloading                                                                                                   | 
 
+## Troubleshooting
+### How to set custom baseURL
+BaseURL is fetched from address bar however you can set custom baseURL by adding *forRoot* parameter at [app.module.ts](https://github.com/groupdocs-signature/GroupDocs.Signature-for-.NET-MVC/blob/master/src/client/apps/signature/src/app/app.module.ts#L10)
+
+**Example:**
+```js
+ViewerModule.forRoot("http://localhost:8080")
+```
 
 ## License
 The MIT License (MIT). 

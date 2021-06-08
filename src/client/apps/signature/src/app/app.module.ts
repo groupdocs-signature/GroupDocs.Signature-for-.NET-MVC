@@ -7,7 +7,7 @@ import { SignatureModule } from "@groupdocs.examples.angular/signature";
 @NgModule({
   declarations: [AppComponent],
   imports: [BrowserModule,
-    SignatureModule.forRoot("http://localhost:8080")],
+    SignatureModule],
   providers: [],
   bootstrap: [AppComponent]
 })
