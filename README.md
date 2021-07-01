@@ -6,6 +6,8 @@
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/bff0b328abbc4b62a7c80177d81b47cc)](https://www.codacy.com/app/GroupDocs/GroupDocs.Signature-for-.NET-MVC?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=groupdocs-signature/GroupDocs.Signature-for-.NET-MVC&amp;utm_campaign=Badge_Grade)
 [![GitHub license](https://img.shields.io/github/license/groupdocs-signature/GroupDocs.Signature-for-.NET-MVC.svg)](https://github.com/groupdocs-signature/GroupDocs.Signature-for-.NET-MVC/blob/master/LICENSE)
 
+:warning: **This repository has moved to https://github.com/groupdocs-signature/GroupDocs.Signature-for-.NET/tree/master/Demos/MVC**
+
 ## System Requirements
 - .NET Framework 4.5
 - Visual Studio 2015
